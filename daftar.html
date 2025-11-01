@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar - Politeknik Negeri Batam</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(rgba(5, 16, 75, 0.6), rgba(5, 16, 75, 0.6)), url('asset/tecno.jpg') center/cover fixed no-repeat;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+      backdrop-filter: blur(5px);
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #343a40;
+    }
+
+    .btn-dark {
+      transition: all 0.3s ease;
+    }
+
+    .btn-dark:hover {
+      background-color: #212529;
+      transform: translateY(-2px);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-lg border-0 rounded-4 p-4">
+          <div class="card-body">
+            <h1 class="text-center mb-4 fw-bold text-dark">Daftar</h1>
+
+            <form>
+              <!-- ROLE -->
+              <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select id="role" class="form-select">
+                  <option selected disabled>Pilih Role Anda</option>
+                  <option value="mahasiswa">Mahasiswa</option>
+                  <option value="dosen">Dosen</option>
+                </select>
+              </div>
+
+              <!-- USERNAME -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="Masukkan username Anda">
+              </div>
+
+              <!-- PASSWORD -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Masukkan password Anda">
+              </div>
+
+              <!-- LINK -->
+              <div class="mb-3">
+                <small class="text-muted">
+                  Sudah punya akun? 
+                  <a href="login.html" class="text-danger fw-semibold">Login</a>
+                </small>
+              </div>
+
+              <!-- BUTTONS -->
+              <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                <a href="landing_page.html" type="button" class="btn btn-dark fw-semibold w-100 me-md-2">Kembali</a>
+                <a href="" type="submit" class="btn btn-dark fw-semibold w-100">Daftar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

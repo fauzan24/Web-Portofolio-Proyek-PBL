@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Penilaian Proyek</title>
+
+    <!-- Bootstrap Local -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <style>
+        body {
+             background:linear-gradient(rgba(5, 16, 75, 0.6), rgba(5, 16, 75, 0.6)), url('asset/tecno.jpg') center/cover fixed no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .form-label {
+            font-weight: bold;
+            text-align: center;
+            display: block;
+        }
+
+        .preview-box {
+            width: 100%;
+            max-width: 250px;
+            height: 200px;
+            background: #f1f1f1;
+        }
+
+        .btn-dark-custom {
+            background-color: #343a40;
+            border-color: #343a40;
+            width: 48%;
+            padding: 10px 0;
+            font-weight: bold;
+        }
+
+        .btn-dark-custom:hover {
+            background-color: #212529;
+            transform: translateY(-2px);
+        }
+
+        /* Responsif untuk layar HP */
+        @media(max-width: 480px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            .preview-box {
+                height: 150px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            .btn-custom {
+                width: 48%;
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container shadow">
+
+    <h3 class="text-center fw-bold">Judul Proyek</h3>
+
+    <!-- Kotak Poster / Gambar -->
+    <div class="preview-box border mx-auto my-3"></div>
+
+    <!-- Deskripsi -->
+    <label class="form-label mt-3">Deskripsi</label>
+
+    <!-- Link File -->
+    <label class="form-label mt-3">Link File</label>
+
+    <!-- URL Youtube -->
+    <label class="form-label mt-3">URL Youtube</label>
+
+    <!-- Anggota Kelompok -->
+    <label class="form-label mt-3">Anggota Kelompok</label>
+
+    <!-- Tombol -->
+    <div class="d-flex justify-content-between mt-4">
+        <a href="dashboard_mahasiswa.html" class="btn btn-dark-custom btn-custom text-white">Kembali</a>
+        <a href="edit.html" class="btn btn-dark-custom btn-custom text-white">Edit</a>
+    </div>
+
+</div>
+
+<!-- Bootstrap Script Local -->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
