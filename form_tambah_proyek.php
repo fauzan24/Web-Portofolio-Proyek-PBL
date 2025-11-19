@@ -1,3 +1,5 @@
+<?php include "koneksi.php"; ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -58,16 +60,16 @@
 
     <h1 class="text-center mb-4 fw-bold">Tambah Proyek</h1>
 
-    <form enctype="multipart/form-data">
+    <form method = "POST" action = "proses_tambah_proyek.php" enctype="multipart/form-data">
 
       <div class="mb-3">
         <label class="form-label fw-bold">Judul Proyek</label>
-        <input type="text" class="form-control" placeholder="Masukkan judul proyek anda">
+        <input type="text" name="judul" class="form-control" placeholder="Masukkan judul proyek anda">
       </div>
 
       <div class="mb-3">
         <label class="form-label fw-bold">Semester</label>
-        <select class="form-select">
+        <select class="form-select" name="semester">
           <option selected disabled>Pilih Semester Anda</option>
           <option value="ganjil">Ganjil</option>
           <option value="genap">Genap</option>
@@ -76,32 +78,32 @@
 
       <div class="mb-3">
         <label class="form-label fw-bold">Deskripsi</label>
-        <textarea class="form-control" placeholder="Masukkan deskripsi proyek" style="height: 100px;"></textarea>
+        <textarea class="form-control" name="deskripsi" placeholder="Masukkan deskripsi proyek" style="height: 100px;"></textarea>
       </div>
 
       <div class="mb-3">
         <label class="form-label fw-bold">Ketua Tim</label>
-        <input type="text" class="form-control" placeholder="Masukkan nama ketua tim">
+        <input type="text" name="ketua" class="form-control" placeholder="Masukkan nama ketua tim">
       </div>
 
       <div class="mb-3">
         <label class="form-label fw-bold">Anggota Tim</label>
-        <input type="text" class="form-control" placeholder="Masukkan nama anggota tim">
+        <input type="text" name="anggota" class="form-control" placeholder="Masukkan nama anggota tim">
       </div>
 
       <div class="mb-3">
         <label class="form-label fw-bold">Link File</label>
-        <input type="url" class="form-control" placeholder="Masukkan link file">
+        <input type="url" name="link_file" class="form-control" placeholder="Masukkan link file">
       </div>
 
       <div class="mb-3">
         <label class="form-label fw-bold">URL YouTube</label>
-        <input type="url" class="form-control" placeholder="Masukkan URL YouTube">
+        <input type="url" name="link_yt" class="form-control" placeholder="Masukkan URL YouTube">
       </div>
 
       <div class="mb-4">
         <label class="form-label fw-bold">Foto Proyek</label>
-        <input type="file" class="form-control" accept="image/*">
+        <input type="file" name="foto" class="form-control" accept="image/*">
       </div>
 
       <div class="d-flex justify-content-between">
