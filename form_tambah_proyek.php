@@ -22,8 +22,7 @@
       background-color: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       padding: 30px;
-      width: 90%;
-      max-width: 480px;
+      width: 1000px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
@@ -107,7 +106,7 @@
       </div>
 
       <div class="d-flex justify-content-between">
-        <a href="dashboard_mahasiswa.html" class="btn btn-dark-custom text-white">Kembali</a>
+        <a href="dashboard_mahasiswa.php" class="btn btn-dark-custom text-white">Kembali</a>
         <button type="submit" class="btn btn-dark-custom text-white">Tambah</button>
       </div>
 

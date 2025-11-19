@@ -1,3 +1,12 @@
+<?php
+include "koneksi.php";
+
+// Query ambil data proyek
+$id_projek = $_GET['id_projek']; // <-- NULL
+$result = mysqli_query($koneksi, "SELECT * FROM projek WHERE `id_projek`= '$id_projek'");
+$row = mysqli_fetch_assoc($result);
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -23,8 +32,7 @@
       background: rgba(255, 255, 255, 0.8);
       padding: 30px;
       border-radius: 10px;
-      width: 90%;
-      max-width: 480px;
+      width: 1000px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
@@ -67,59 +75,64 @@
   <div class="form-card">
     <h1 class="text-center mb-4 fw-bold">Edit Proyek</h1>
 
-    <form enctype="multipart/form-data">
+    <form action="proses_edit_proyek.php" method="POST" enctype="multipart/form-data">
 
-      <div class="mb-3">
+    <!-- wajib dikirim -->
+    <input type="hidden" name="id_projek" value="<?= $row['id_projek'] ?>">
+    <input type="hidden" name="foto_lama" value="<?= $row['foto'] ?>">
+
+    <div class="mb-3">
         <label class="form-label">Judul Proyek</label>
-        <input type="text" class="form-control" placeholder="Masukkan judul proyek anda">
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Semester</label>
-        <select class="form-select">
-          <option selected disabled>Pilih Semester Anda</option>
-          <option value="ganjil">Ganjil</option>
-          <option value="genap">Genap</option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Deskripsi</label>
-        <textarea class="form-control" rows="3" placeholder="Masukkan deskripsi proyek"></textarea>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Ketua Tim</label>
-        <input type="text" class="form-control" placeholder="Masukkan nama ketua tim">
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Anggota Tim</label>
-        <input type="text" class="form-control" placeholder="Masukkan nama anggota tim">
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Link File</label>
-        <input type="url" class="form-control" placeholder="Masukkan link file">
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">URL YouTube</label>
-        <input type="url" class="form-control" placeholder="Masukkan URL YouTube">
-      </div>
-
-      <div class="mb-4">
-        <label class="form-label">Foto Proyek</label>
-        <input type="file" class="form-control" accept="image/*">
-      </div>
-
-    <!-- Tombol -->
-    <div class="d-flex justify-content-between mt-4">
-        <a href="detail_proyek.html" class="btn btn-dark-custom btn-custom text-white">Kembali</a>
-        <a href="edit.html" class="btn btn-dark-custom btn-custom text-white">Edit</a>
+        <input type="text" name="judul" class="form-control" value="<?= $row['judul'] ?>">
     </div>
 
-    </form>
+    <div class="mb-3">
+        <label class="form-label">Semester</label>
+        <select name="semester" class="form-select">
+            <option disabled>Pilih Semester Anda</option>
+            <option value="ganjil" <?= ($row['semester'] == "ganjil" ? "selected" : "") ?>>Ganjil</option>
+            <option value="genap" <?= ($row['semester'] == "genap" ? "selected" : "") ?>>Genap</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Deskripsi</label>
+        <textarea class="form-control" name="deskripsi"><?= $row['deskripsi'] ?></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ketua Tim</label>
+        <input type="text" name="ketua" class="form-control" value="<?= $row['ketua'] ?>">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Anggota Tim</label>
+        <input type="text" name="anggota" class="form-control" value="<?= $row['anggota'] ?>">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Link File</label>
+        <input type="url" name="link_file" class="form-control" value="<?= $row['link_file'] ?>">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">URL YouTube</label>
+        <input type="url" name="link_yt" class="form-control" value="<?= $row['link_yt'] ?>">
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label">Foto Proyek</label>
+        <img src="gambar/<?= $row['foto'] ?>" class="project-img img-fluid mb-2">
+        <input type="file" name="foto" class="form-control" accept="image/*">
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <a href="detail_proyek.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-dark-custom text-white">Kembali</a>
+        <button type="submit" class="btn btn-dark-custom text-white">Simpan</button>
+    </div>
+
+</form>
+
   </div>
 
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>

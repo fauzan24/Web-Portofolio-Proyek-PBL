@@ -1,3 +1,12 @@
+<?php
+include "koneksi.php";
+
+// Query ambil data proyek
+$id_projek = $_GET['id_projek']; // <-- NULL
+$result = mysqli_query($koneksi, "SELECT * FROM projek WHERE `id_projek`= '$id_projek'");
+$row = mysqli_fetch_assoc($result);
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -10,7 +19,7 @@
 
     <style>
         body {
-             background:linear-gradient(rgba(5, 16, 75, 0.6), rgba(5, 16, 75, 0.6)), url('asset/tecno.jpg') center/cover fixed no-repeat;
+            background:linear-gradient(rgba(5, 16, 75, 0.6), rgba(5, 16, 75, 0.6)), url('asset/tecno.jpg') center/cover fixed no-repeat;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -25,8 +34,8 @@
             background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
             padding: 30px;
-            width: 100%;
-            max-width: 450px;
+            width: 1000px;
+            
         }
 
         textarea {
@@ -39,12 +48,7 @@
             display: block;
         }
 
-        .preview-box {
-            width: 100%;
-            max-width: 250px;
-            height: 200px;
-            background: #f1f1f1;
-        }
+        
 
         .btn-dark-custom {
             background-color: #343a40;
@@ -57,6 +61,11 @@
         .btn-dark-custom:hover {
             background-color: #212529;
             transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            width: 48%;
+            padding: 10px 0;
         }
 
         /* Responsif untuk layar HP */
@@ -85,28 +94,37 @@
 
 <div class="form-container shadow">
 
-    <h3 class="text-center fw-bold">Judul Proyek</h3>
+    <h3 class="text-center fw-bold"><?= $row['judul'] ?></h3>
 
     <!-- Kotak Poster / Gambar -->
-    <div class="preview-box border mx-auto my-3"></div>
+    <div class="preview-box border mx-auto my-5"><img src="gambar/<?= $row['foto'] ?>" class="project-img img-fluid" alt="gambar proyek"></div>
 
     <!-- Deskripsi -->
-    <label class="form-label mt-3">Deskripsi</label>
+    <label class="form-label mt-3"><?= $row['deskripsi'] ?></label>
 
     <!-- Link File -->
-    <label class="form-label mt-3">Link File</label>
+    <a href="<?= $row['link_file'] ?>" class="btn btn-outline-primary form-label mt-3 text-decoration-none">URL File klik disini</label>
 
     <!-- URL Youtube -->
-    <label class="form-label mt-3">URL Youtube</label>
+    <a href="<?= $row['link_yt'] ?>" class="btn btn-outline-primary form-label mt-3 text-decoration-none">URL Youtube klik disini</a>
+
+    <!-- Anggota ketua -->
+    <p class="form-label mt-3"><strong> Nama Ketua Kelompok : </strong><?= $row['ketua'] ?></p>
 
     <!-- Anggota Kelompok -->
-    <label class="form-label mt-3">Anggota Kelompok</label>
+    <p class="form-label mt-3"><strong> Nama Anggota Kelompok : </strong><?= $row['anggota'] ?></p>
 
     <!-- Tombol -->
-    <div class="d-flex justify-content-between mt-4">
-        <a href="dashboard_mahasiswa.html" class="btn btn-dark-custom btn-custom text-white">Kembali</a>
-        <a href="edit.html" class="btn btn-dark-custom btn-custom text-white">Edit</a>
-    </div>
+    <div class="d-flex gap-2 mt-4">
+    
+    <a href="dashboard_mahasiswa.php" class="btn btn-dark-custom text-white flex-fill">Kembali</a>
+
+    <a onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')" href="hapus.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-danger text-white flex-fill">Hapus</a>
+
+    <a href="edit.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-dark-custom text-white flex-fill">Edit</a>
+
+</div>
+
 
 </div>
 
