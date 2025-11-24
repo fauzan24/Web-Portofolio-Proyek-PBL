@@ -1,3 +1,10 @@
+<?php
+include "koneksi.php";
+
+// Query ambil data proyek
+$result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC");
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -135,63 +142,28 @@
 </div>
 
   <!-- Konten -->
-  <div class="container content-section">
-    <div class="row justify-content-center">
-      
-      <!-- Baris 1 -->
-      <div class="col-md-4">
-        <div class="project-card">
-          <h5>Judul Proyek</h5>
-          <div class="placeholder-img"></div>
-          <p>Deskripsi singkat proyek mahasiswa.</p>
-          <a href="form_penilaian_dosen.html" class="btn btn-penilaian">Tambah Penilaian</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="project-card">
-          <h5>Judul Proyek</h5>
-          <div class="placeholder-img"></div>
-          <p>Deskripsi singkat proyek mahasiswa.</p>
-          <a href="form_penilaian_dosen.html" class="btn btn-penilaian">Tambah Penilaian</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="project-card">
-          <h5>Judul Proyek</h5>
-          <div class="placeholder-img"></div>
-          <p>Deskripsi singkat proyek mahasiswa.</p>
-          <a href="form_penilaian_dosen.html" class="btn btn-penilaian">Tambah Penilaian</a>
-        </div>
-      </div>
+<div class="container content-section mt-4">
+  <div class="row justify-content-center">
 
-      <!-- Baris 2 -->
-      <div class="col-md-4">
-        <div class="project-card">
-          <h5>Judul Proyek</h5>
-          <div class="placeholder-img"></div>
-          <p>Deskripsi singkat proyek mahasiswa.</p>
-          <a href="form_penilaian_dosen.html" class="btn btn-penilaian">Tambah Penilaian</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="project-card">
-          <h5>Judul Proyek</h5>
-          <div class="placeholder-img"></div>
-          <p>Deskripsi singkat proyek mahasiswa.</p>
-          <a href="form_penilaian_dosen.html" class="btn btn-penilaian">Tambah Penilaian</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="project-card">
-          <h5>Judul Proyek</h5>
-          <div class="placeholder-img"></div>
-          <p>Deskripsi singkat proyek mahasiswa.</p>
-          <a href="form_penilaian_dosen.html" class="btn btn-penilaian">Tambah Penilaian</a>
-        </div>
-      </div>
+    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+      <div class="col-md-4 mb-4">
+        <div class="project-card text-center">
 
-    </div>
+          <h5><?= $row['judul'] ?></h5>
+
+          <img src="gambar/<?= $row['foto'] ?>" class="project-img img-fluid" alt="gambar proyek">
+          <p><?= $row['deskripsi']?></p>
+
+          <a href="form_penilaian_dosen.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-penilaian mt-2">
+            Tambah Penilaian
+          </a>
+
+        </div>
+      </div>
+    <?php } ?>
+
   </div>
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

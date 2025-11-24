@@ -1,135 +1,132 @@
 <?php
 include "koneksi.php";
 
-// Query ambil data proyek
-$id_projek = $_GET['id_projek']; // <-- NULL
-$result = mysqli_query($koneksi, "SELECT * FROM projek WHERE `id_projek`= '$id_projek'");
+// Template
+include "template/sidebar.php";
+include "template/header.php";
+include "template/topbar.php";
+
+// Ambil ID
+$id_projek = $_GET['id_projek'];
+
+// Query
+$result = mysqli_query($koneksi, "SELECT * FROM projek WHERE id_projek = '$id_projek'");
 $row = mysqli_fetch_assoc($result);
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Penilaian Proyek</title>
+<style>
+    .content-wrapper {
+        margin-left: 260px;
+        padding: 120px 60px 60px;
+        background: #f4f7fb;
+        min-height: 100vh;
+    }
 
-    <!-- Bootstrap Local -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    .project-card {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 18px;
+        box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    }
 
-    <style>
-        body {
-            background:linear-gradient(rgba(5, 16, 75, 0.6), rgba(5, 16, 75, 0.6)), url('asset/tecno.jpg') center/cover fixed no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
+    .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0d3d6a;
+        margin-top: 35px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-        .form-container {
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            padding: 30px;
-            width: 1000px;
-            
-        }
+    .content-text {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #444;
+    }
 
-        textarea {
-            resize: none;
-        }
+    .divider {
+        height: 1px;
+        background-color: #e6e6e6;
+        margin: 30px 0;
+    }
 
-        .form-label {
-            font-weight: bold;
-            text-align: center;
-            display: block;
-        }
+    .project-image {
+        border-radius: 10px;
+        box-shadow: 0 5px 22px rgba(0,0,0,0.12);
+        width: 100%;
+        max-height: 380px;
+        object-fit: cover;
+    }
 
-        
+    .btn-custom {
+        padding: 10px 28px;
+        border-radius: 10px;
+    }
 
-        .btn-dark-custom {
-            background-color: #343a40;
-            border-color: #343a40;
-            width: 48%;
-            padding: 10px 0;
-            font-weight: bold;
-        }
+</style>
 
-        .btn-dark-custom:hover {
-            background-color: #212529;
-            transform: translateY(-2px);
-        }
+<!-- MAIN CONTENT -->
+<div class="content-wrapper">
 
-        .btn-danger {
-            width: 48%;
-            padding: 10px 0;
-        }
+    <div class="project-card">
 
-        /* Responsif untuk layar HP */
-        @media(max-width: 480px) {
-            .form-container {
-                padding: 20px;
-            }
+        <!-- Judul Proyek -->
+        <h2 class="fw-bold mb-4"><?= $row['judul'] ?></h2>
+        <div class="divider"></div>
 
-            .preview-box {
-                height: 150px;
-            }
+        <!-- Gambar -->
+        <img src="gambar/<?= $row['foto'] ?>" class="project-image mb-4">
 
-            h3 {
-                font-size: 18px;
-            }
+        <!-- Deskripsi -->
+        <h6 class="section-title">Deskripsi Proyek</h6>
+        <p class="content-text"><?= nl2br($row['deskripsi']) ?></p>
+        <div class="divider"></div>
 
-            .btn-custom {
-                width: 48%;
-                font-size: 14px;
-                padding: 8px;
-            }
-        }
-    </style>
-</head>
-<body>
+        <!-- File -->
+        <h6 class="section-title">File Dokumen</h6>
+        <a href="<?= $row['link_file'] ?>" target="_blank"
+           class="btn btn-outline-primary btn-custom mt-1"><i class="fa-brands fa-google-drive"></i>
+            Buka File Dokumen
+        </a>
 
-<div class="form-container shadow">
+        <!-- Video -->
+        <h6 class="section-title mt-4">Video Presentasi</h6>
+        <a href="<?= $row['link_yt'] ?>" target="_blank"
+           class="btn btn-outline-danger btn-custom mt-1"><i class="fa-brands fa-youtube"></i>
+            Tonton di YouTube
+        </a>
 
-    <h3 class="text-center fw-bold"><?= $row['judul'] ?></h3>
+        <div class="divider"></div>
 
-    <!-- Kotak Poster / Gambar -->
-    <div class="preview-box border mx-auto my-5"><img src="gambar/<?= $row['foto'] ?>" class="project-img img-fluid" alt="gambar proyek"></div>
+        <!-- Ketua -->
+        <h6 class="section-title">Ketua Tim</h6>
+        <p class="content-text"><?= $row['ketua'] ?></p>
 
-    <!-- Deskripsi -->
-    <label class="form-label mt-3"><?= $row['deskripsi'] ?></label>
+        <!-- Anggota -->
+        <h6 class="section-title mt-3">Anggota Tim</h6>
+        <p class="content-text"><?= $row['anggota'] ?></p>
 
-    <!-- Link File -->
-    <a href="<?= $row['link_file'] ?>" class="btn btn-outline-primary form-label mt-3 text-decoration-none">URL File klik disini</label>
+        <div class="divider"></div>
 
-    <!-- URL Youtube -->
-    <a href="<?= $row['link_yt'] ?>" class="btn btn-outline-primary form-label mt-3 text-decoration-none">URL Youtube klik disini</a>
+        <!-- Tombol -->
+        <div class="d-flex gap-3 mt-3">
+            <a href="dashboard_mahasiswa.php" class="btn btn-secondary btn-custom">Kembali</a>
 
-    <!-- Anggota ketua -->
-    <p class="form-label mt-3"><strong> Nama Ketua Kelompok : </strong><?= $row['ketua'] ?></p>
+            <a onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" 
+               href="hapus.php?id_projek=<?= $row['id_projek'] ?>" 
+               class="btn btn-danger btn-custom">
+                Hapus
+            </a>
 
-    <!-- Anggota Kelompok -->
-    <p class="form-label mt-3"><strong> Nama Anggota Kelompok : </strong><?= $row['anggota'] ?></p>
+            <a href="edit.php?id_projek=<?= $row['id_projek'] ?>" 
+               class="btn btn-primary btn-custom">
+                Edit
+            </a>
+        </div>
 
-    <!-- Tombol -->
-    <div class="d-flex gap-2 mt-4">
-    
-    <a href="dashboard_mahasiswa.php" class="btn btn-dark-custom text-white flex-fill">Kembali</a>
-
-    <a onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')" href="hapus.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-danger text-white flex-fill">Hapus</a>
-
-    <a href="edit.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-dark-custom text-white flex-fill">Edit</a>
+    </div>
 
 </div>
 
-
-</div>
-
-<!-- Bootstrap Script Local -->
-<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+<?php include "template/footer.php"; ?>

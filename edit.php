@@ -1,140 +1,139 @@
 <?php
 include "koneksi.php";
 
+// Template
+include "template/sidebar.php";
+include "template/header.php";
+include "template/topbar.php";
+
 // Query ambil data proyek
-$id_projek = $_GET['id_projek']; // <-- NULL
-$result = mysqli_query($koneksi, "SELECT * FROM projek WHERE `id_projek`= '$id_projek'");
+$id_projek = $_GET['id_projek'];
+$result = mysqli_query($koneksi, "SELECT * FROM projek WHERE id_projek = '$id_projek'");
 $row = mysqli_fetch_assoc($result);
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Proyek - Politeknik Negeri Batam</title>
-
-  <!-- Bootstrap Local -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
-  <style>
-    body {
-      background: linear-gradient(rgba(5, 16, 75, 0.6), rgba(5, 16, 75, 0.6)), url('asset/GU.jpg') center/cover fixed no-repeat;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      background-blend-mode: darken;
+<style>
+    .main-content {
+        margin-left: 260px;
+        padding: 130px 60px 60px;
+        background: #f4f7fb;
+        min-height: 100vh;
     }
 
-    .form-card {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 30px;
-      border-radius: 10px;
-      width: 1000px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    .edit-card {
+        background: #ffffff;
+        padding: 35px;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #0d3d6a;
+        margin-bottom: 20px;
     }
 
     .form-label {
-      font-weight: bold;
-      color: #343a40;
+        font-weight: 600;
+        color: #0d3d6a;
     }
 
-    .form-control,
-    .form-select {
-      border: 1px solid #ced4da;
-      background-color: white;
-      color: #343a40;
-      padding: 10px 15px;
+    .form-control, .form-select, textarea {
+        border-radius: 10px;
+        padding: 12px 15px;
+        border: 1px solid #cdd4da;
     }
 
-        .btn-dark-custom {
-            background-color: #343a40;
-            border-color: #343a40;
-            width: 48%;
-            padding: 10px 0;
-            font-weight: bold;
-        }
-
-        .btn-dark-custom:hover {
-            background-color: #212529;
-            transform: translateY(-2px);
-        }
-
-    @media (max-width: 576px) {
-      .form-card { padding: 25px 20px; }
-      h1 { font-size: 1.8rem; }
-      .btn-custom { padding: 8px 0; }
+    .project-img {
+        max-height: 180px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0px 6px 18px rgba(0,0,0,0.15);
     }
-  </style>
-</head>
 
-<body class="text-dark">
+    .btn-custom {
+        padding: 10px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+</style>
 
-  <div class="form-card">
-    <h1 class="text-center mb-4 fw-bold">Edit Proyek</h1>
+<!-- MAIN CONTENT -->
+<div class="main-content">
 
-    <form action="proses_edit_proyek.php" method="POST" enctype="multipart/form-data">
+    <div class="edit-card">
+        <h2 class="section-title">Edit Proyek</h2>
 
-    <!-- wajib dikirim -->
-    <input type="hidden" name="id_projek" value="<?= $row['id_projek'] ?>">
-    <input type="hidden" name="foto_lama" value="<?= $row['foto'] ?>">
+        <form action="proses_edit_proyek.php" method="POST" enctype="multipart/form-data">
 
-    <div class="mb-3">
-        <label class="form-label">Judul Proyek</label>
-        <input type="text" name="judul" class="form-control" value="<?= $row['judul'] ?>">
+            <input type="hidden" name="id_projek" value="<?= $row['id_projek'] ?>">
+            <input type="hidden" name="foto_lama" value="<?= $row['foto'] ?>">
+
+            <!-- Judul -->
+            <div class="mb-3">
+                <label class="form-label">Judul Proyek</label>
+                <input type="text" name="judul" class="form-control" value="<?= $row['judul'] ?>">
+            </div>
+
+            <!-- Semester -->
+            <div class="mb-3">
+                <label class="form-label">Semester</label>
+                <select name="semester" class="form-select">
+                    <option disabled>Pilih Semester</option>
+                    <option value="ganjil" <?= ($row['semester'] == "ganjil" ? "selected" : "") ?>>Ganjil</option>
+                    <option value="genap" <?= ($row['semester'] == "genap" ? "selected" : "") ?>>Genap</option>
+                </select>
+            </div>
+
+            <!-- Deskripsi -->
+            <div class="mb-3">
+                <label class="form-label">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" rows="5"><?= $row['deskripsi'] ?></textarea>
+            </div>
+
+            <!-- Ketua -->
+            <div class="mb-3">
+                <label class="form-label">Ketua Tim</label>
+                <input type="text" name="ketua" class="form-control" value="<?= $row['ketua'] ?>">
+            </div>
+
+            <!-- Anggota -->
+            <div class="mb-3">
+                <label class="form-label">Anggota Tim</label>
+                <input type="text" name="anggota" class="form-control" value="<?= $row['anggota'] ?>">
+            </div>
+
+            <!-- Link File -->
+            <div class="mb-3">
+                <label class="form-label">Link File</label>
+                <input type="url" name="link_file" class="form-control" value="<?= $row['link_file'] ?>">
+            </div>
+
+            <!-- YouTube -->
+            <div class="mb-3">
+                <label class="form-label">URL YouTube</label>
+                <input type="url" name="link_yt" class="form-control" value="<?= $row['link_yt'] ?>">
+            </div>
+
+            <!-- Foto -->
+            <div class="mb-4">
+                <label class="form-label">Foto Proyek</label>
+                <br>
+                <img src="gambar/<?= $row['foto'] ?>" class="project-img">
+                <input type="file" name="foto" class="form-control mt-2" accept="image/*">
+            </div>
+
+            <!-- Tombol -->
+            <div class="d-flex gap-3">
+                <a href="detail_proyek.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-secondary btn-custom">Kembali</a>
+                <button type="submit" class="btn btn-primary btn-custom">Simpan Perubahan</button>
+            </div>
+
+        </form>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label">Semester</label>
-        <select name="semester" class="form-select">
-            <option disabled>Pilih Semester Anda</option>
-            <option value="ganjil" <?= ($row['semester'] == "ganjil" ? "selected" : "") ?>>Ganjil</option>
-            <option value="genap" <?= ($row['semester'] == "genap" ? "selected" : "") ?>>Genap</option>
-        </select>
-    </div>
+</div>
 
-    <div class="mb-3">
-        <label class="form-label">Deskripsi</label>
-        <textarea class="form-control" name="deskripsi"><?= $row['deskripsi'] ?></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Ketua Tim</label>
-        <input type="text" name="ketua" class="form-control" value="<?= $row['ketua'] ?>">
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Anggota Tim</label>
-        <input type="text" name="anggota" class="form-control" value="<?= $row['anggota'] ?>">
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Link File</label>
-        <input type="url" name="link_file" class="form-control" value="<?= $row['link_file'] ?>">
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">URL YouTube</label>
-        <input type="url" name="link_yt" class="form-control" value="<?= $row['link_yt'] ?>">
-    </div>
-
-    <div class="mb-4">
-        <label class="form-label">Foto Proyek</label>
-        <img src="gambar/<?= $row['foto'] ?>" class="project-img img-fluid mb-2">
-        <input type="file" name="foto" class="form-control" accept="image/*">
-    </div>
-
-    <div class="d-flex justify-content-between">
-        <a href="detail_proyek.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-dark-custom text-white">Kembali</a>
-        <button type="submit" class="btn btn-dark-custom text-white">Simpan</button>
-    </div>
-
-</form>
-
-  </div>
-
-  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php include "template/footer.php"; ?>
