@@ -1,160 +1,64 @@
 <?php
 include "koneksi.php";
 
+// Load template
+include "template_dosen/header.php";
+include "template_dosen/sidebar.php";
+include "template_dosen/topbar.php";
+
 // Query ambil data proyek
 $result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC");
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - Politeknik Negeri Batam</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .content-wrapper {
+    margin-left: 240px;
+    padding: 120px 30px 40px;
+  }
 
-  <style>
-    body {
-      background: linear-gradient(rgba(5, 16, 75, 0.6), rgba(5, 16, 75, 0.6)),
-                  url('asset/GU.jpg') center/cover no-repeat;
-      background-size: cover;
-      font-family: 'Poppins', sans-serif;
-      color: #003366;
-      margin: 0;
-      padding: 0;
-    }
+  .project-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: center;
+  }
 
-    /* Navbar Sticky */
-    .navbar {
-      background-color: #0b3551;
-      padding: 0.8rem 1rem;
-      transition: box-shadow 0.3s ease-in-out;
-    }
+  .project-card:hover {
+    transform: translateY(-5px);
+    transition: 0.2s;
+  }
 
-    /* Tambahkan bayangan halus saat discroll */
-    .navbar.scrolled {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
+  .btn-penilaian {
+    background-color: #0b3551;
+    color: white;
+    border-radius: 15px;
+  }
+</style>
 
-    .navbar-brand {
-      font-weight: 600;
-      font-size: 1.3rem;
-      color: #fff !important;
-    }
+<div class="content-wrapper">
 
-    .navbar-nav .nav-link {
-      color: #d9e6f2 !important;
-      margin-left: 1rem;
-      font-weight: 500;
-    }
-
-    .navbar-nav .nav-link.active {
-      color: #fff !important;
-      text-decoration: underline;
-    }
-
-    /* Card Proyek */
-    .project-card {
-      background-color: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.2s ease-in-out;
-      padding: 1rem;
-      margin-bottom: 30px;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .project-card h5 {
-      font-weight: 600;
-      color: #0b3551;
-      margin-bottom: 0.5rem;
-    }
-
-    .placeholder-img {
-      width: 100%;
-      height: 120px;
-      background-color: #e6e6e6;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .btn-penilaian {
-      background-color: #0b3551;
-      color: white;
-      font-weight: 500;
-      border-radius: 12px;
-      padding: 8px 15px;
-      border: none;
-    }
-
-    .btn-penilaian:hover {
-      background-color: #0e456f;
-    }
-
-    .content-section {
-      padding: 100px 20px 60px; /* beri jarak karena navbar fixed */
-    }
-
-    @media (max-width: 768px) {
-      .project-card {
-        margin-bottom: 20px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #0b3551;">
-  <div class="container">
-    <!-- Bagian Logo + Teks -->
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="asset/logo.png" alt="Logo" width="35" height="35" class="me-2 rounded-circle">
-      <span>PortoLearn</span>
-    </a>
-
-    <!-- Tombol toggle untuk tampilan mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Menu Navbar -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="landing_page.html">Beranda</a></li>
-        <li class="nav-item"><a class="nav-link" href="dashboard_dosen.html">Proyek</a></li>
-        <li class="nav-item"><a class="nav-link" href="laporan.html">Laporan</a></li>
-        <li class="nav-item"><a class="nav-link" href="landing_page.html">Logout</a></li>
-      </ul>
+  <!-- Search -->
+  <div class="container text-center mb-4">
+    <div class="col-12 col-md-6 mx-auto">
+      <input type="text" class="form-control form-control-lg rounded-pill" placeholder="🔍  Cari proyek...">
     </div>
   </div>
-</nav>
-
-<div class="container text-center mt-3">
-  <div class="col-12 col-md-6 mx-auto">
-    <input type="text" class="form-control form-control-lg rounded-pill" placeholder="🔍 Search">
-  </div>
-</div>
 
   <!-- Konten -->
-<div class="container content-section mt-4">
-  <div class="row justify-content-center">
+  <div class="row">
 
     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
       <div class="col-md-4 mb-4">
-        <div class="project-card text-center">
+        <div class="project-card">
 
           <h5><?= $row['judul'] ?></h5>
 
-          <img src="gambar/<?= $row['foto'] ?>" class="project-img img-fluid" alt="gambar proyek">
-          <p><?= $row['deskripsi']?></p>
+          <img src="gambar/<?= $row['foto'] ?>" class="img-fluid rounded mb-3" style="height:140px; object-fit:cover;">
 
-          <a href="form_penilaian_dosen.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-penilaian mt-2">
+          <p class="text-muted"><?= substr($row['deskripsi'], 0, 120) ?>...</p>
+
+          <a href="form_penilaian_dosen.php?id_projek=<?= $row['id_projek'] ?>" class="btn btn-penilaian px-4 mt-2">
             Tambah Penilaian
           </a>
 
@@ -163,13 +67,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC")
     <?php } ?>
 
   </div>
+
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<footer>
-  <p class="mb-0">&copy; 2025 PortoLearn | Politeknik Negeri Batam</p>
-</footer>
-
-</body>
-</html>
+<?php include "template/footer.php"; ?>
