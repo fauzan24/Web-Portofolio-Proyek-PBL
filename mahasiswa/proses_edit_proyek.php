@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 // Tangkap data dari form
 $id_projek  = $_POST['id_projek'];
@@ -20,7 +20,7 @@ if (!empty($_FILES['foto']['name'])) {
     $tmp_file    = $_FILES['foto']['tmp_name'];
 
     // Pindahkan foto baru ke folder gambar
-    move_uploaded_file($tmp_file, "gambar/" . $foto_baru);
+    move_uploaded_file($tmp_file, "../gambar/" . $foto_baru);
 
     // Foto final yang disimpan
     $foto_final = $foto_baru;

@@ -1,17 +1,64 @@
-<?php
-include "koneksi.php";
+<?php 
+session_start();  // WAJIB DI PALING ATAS
 
-// Template
-include "template/sidebar.php";
-include "template/header.php";
-include "template/topbar.php";
+include "../koneksi.php";
 
-session_start();
+// Cek apakah user sudah login
+if (!isset($_SESSION['id_user'])) {
+    echo "<script>alert('Silakan login terlebih dahulu'); 
+          window.location='../login.php';</script>";
+    exit;
+}
+
+// Ambil ID user dari session
 $id_user = $_SESSION['id_user'];
 
-// Query user
+// Ambil data user dari database
 $result = mysqli_query($koneksi, "SELECT * FROM users WHERE id_user = '$id_user'");
-$user = mysqli_fetch_assoc($result);
+$dataUser = mysqli_fetch_assoc($result);  // <- nama DIUBAH agar tidak bentrok
+
+// Jika user tidak ditemukan
+if (!$dataUser) {
+    echo "<script>alert('Data user tidak ditemukan!'); 
+          window.location='../login.php';</script>";
+    exit;
+}
+
+// Tentukan role
+$role = $dataUser['role'];
+
+
+// ===============================
+// LOAD TEMPLATE SESUAI ROLE
+// ===============================
+if ($role == 'admin') {
+    include "../template_admin/sidebar.php";
+    include "../template_admin/header.php";
+    include "../template_admin/topbar.php";
+
+} elseif ($role == 'dosen') {
+    include "../template_dosen/sidebar.php";
+    include "../template_dosen/header.php";
+    include "../template_dosen/topbar.php";
+
+} else { // mahasiswa
+    include "../template/sidebar.php";
+    include "../template/header.php";
+    include "../template/topbar.php";
+}
+
+
+// ===============================
+// TOMBOL KEMBALI SESUAI ROLE
+// ===============================
+if ($role == 'admin') {
+    $link_kembali = "../admin/dashboard_admin.php";
+} elseif ($role == 'dosen') {
+    $link_kembali = "../dosen/dashboard_dosen.php";
+} else {
+    $link_kembali = "../mahasiswa/dashboard_mahasiswa.php";
+}
+
 ?>
 
 <style>
@@ -87,16 +134,17 @@ $user = mysqli_fetch_assoc($result);
     }
 </style>
 
+<!-- MAIN CONTENT -->
 <div class="content-wrapper">
 
     <div class="profile-card">
 
         <!-- Profile Header -->
         <div class="profile-header">
-            <img src="asset/profile_default.png" class="profile-db">
+            <img src="../asset/profile_default.png" class="profile-db">
             <div>
-                <h2 class="profile-title"><?= $user['nama'] ?></h2>
-                <p class="text-secondary mb-0">@<?= $user['username'] ?></p>
+                <h2 class="profile-title"><?= $dataUser['nama'] ?></h2>
+                <p class="text-secondary mb-0">@<?= $dataUser['username'] ?></p>
             </div>
         </div>
 
@@ -107,31 +155,36 @@ $user = mysqli_fetch_assoc($result);
 
         <div class="info-box">
             <div class="info-label">Nama Lengkap</div>
-            <div class="info-value"><?= $user['nama'] ?></div>
+            <div class="info-value"><?= $dataUser['nama'] ?></div>
         </div>
 
         <div class="info-box">
             <div class="info-label">Username</div>
-            <div class="info-value"><?= $user['username'] ?></div>
+            <div class="info-value"><?= $dataUser['username'] ?></div>
         </div>
 
         <div class="info-box">
             <div class="info-label">NIM</div>
-            <div class="info-value"><?= $user['nim'] ?></div>
+            <div class="info-value"><?= $dataUser['nim'] ?></div>
         </div>
+
         <hr>
 
         <!-- Tombol Aksi -->
         <div class="d-flex justify-content-between mt-3">
-            <a href="dashboard_mahasiswa.php" class="btn btn-secondary btn-custom">Kembali</a>
 
-            <a href="ganti_password.php" class="btn btn-primary btn-custom">
+            <a href="<?= $link_kembali ?>" class="btn btn-secondary btn-custom">
+                Kembali
+            </a>
+
+            <a href="../kelola_akun/ganti_password.php" class="btn btn-primary btn-custom">
                 Ganti Password
             </a>
+
         </div>
 
     </div>
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 // Ambil data biasa
 $judul     = $_POST['judul'];
@@ -9,20 +9,21 @@ $ketua     = $_POST['ketua'];
 $anggota   = $_POST['anggota'];
 $link_file = $_POST['link_file'];
 $link_yt   = $_POST['link_yt'];
+$id_user   = $_POST['id_user'];
 
 // Ambil file foto
 $foto      = $_FILES['foto']['name'];
 $lokasi    = $_FILES['foto']['tmp_name'];
 
 // Folder penyimpanan
-$folder = "gambar/";
+$folder = "../gambar/";
 
 // Pindahkan file ke folder
 move_uploaded_file($lokasi, $folder . $foto);
 
 // Query database
-$query = "INSERT INTO projek (judul, semester, deskripsi, ketua, anggota, link_file, link_yt, foto)
-          VALUES ('$judul', '$semester', '$deskripsi', '$ketua', '$anggota', '$link_file', '$link_yt', '$foto')";
+$query = "INSERT INTO projek (judul, semester, deskripsi, ketua, anggota, link_file, link_yt, foto, id_user)
+          VALUES ('$judul', '$semester', '$deskripsi', '$ketua', '$anggota', '$link_file', '$link_yt', '$foto', '$id_user')";
 
 if (mysqli_query($koneksi, $query)) {
     header("Location: dashboard_mahasiswa.php");

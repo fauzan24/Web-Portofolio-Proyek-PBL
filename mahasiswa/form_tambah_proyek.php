@@ -1,8 +1,11 @@
 <?php 
-include "koneksi.php"; 
-include "template/header.php"; 
-include "template/sidebar.php"; 
-include "template/topbar.php"; 
+session_start();
+$id_user = $_SESSION['id_user'];
+include "../koneksi.php"; 
+include "../template/header.php"; 
+include "../template/sidebar.php"; 
+include "../template/topbar.php"; 
+
 ?>
 
 <!-- MAIN CONTENT -->
@@ -60,6 +63,8 @@ include "template/topbar.php";
           <input type="file" name="foto" class="form-control" accept="image/*">
         </div>
 
+        <input type="number" name="id_user" value="<?= $_SESSION['id_user'] ?>" hidden>
+
         <div class="d-flex justify-content-between">
           <a href="dashboard_mahasiswa.php" class="btn btn-dark-custom text-white">Kembali</a>
           <button type="submit" class="btn btn-dark-custom text-white">Tambah</button>
@@ -80,4 +85,4 @@ include "template/topbar.php";
   </div>
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

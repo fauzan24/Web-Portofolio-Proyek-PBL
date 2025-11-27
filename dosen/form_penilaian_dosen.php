@@ -1,18 +1,28 @@
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 // Template
-include "template/sidebar.php";
-include "template/header.php";
-include "template/topbar.php";
+include "../template_dosen/sidebar.php";
+include "../template_dosen/header.php";
+include "../template_dosen/topbar.php";
 
 // Ambil ID
-$id_projek = $_GET['id_projek'];
+if (!isset($_GET['id_projek']) || empty($_GET['id_projek'])) {
+    die("<div class='alert alert-danger'>ID Proyek tidak ditemukan!</div>");
+}
+
+$id_projek = mysqli_real_escape_string($koneksi, $_GET['id_projek']);
 
 // Query
 $result = mysqli_query($koneksi, "SELECT * FROM projek WHERE id_projek = '$id_projek'");
+
+if (!$result || mysqli_num_rows($result) == 0) {
+    die("<div class='alert alert-warning'>Data proyek tidak ditemukan!</div>");
+}
+
 $row = mysqli_fetch_assoc($result);
 ?>
+
 
 <style>
     .content-wrapper {
@@ -76,7 +86,7 @@ $row = mysqli_fetch_assoc($result);
         <div class="divider"></div>
 
         <!-- Gambar -->
-        <img src="gambar/<?= $row['foto'] ?>" class="project-image mb-4">
+        <img src="../gambar/<?= $row['foto'] ?>" class="project-image mb-4">
 
         <!-- Deskripsi -->
         <h6 class="section-title">Deskripsi Proyek</h6>
@@ -109,9 +119,24 @@ $row = mysqli_fetch_assoc($result);
 
         <div class="divider"></div>
 
+        
+        <div class="mb-3">
+            <label for="" class="form-label">Penilaian</label>
+            <input
+                type="number"
+                name="penilaian"
+                id="penilaian"
+                class="form-control"
+                placeholder="0-100" 
+                aria-describedby="helpId"
+                min="0" max="100"
+            />
+        </div>
+        
+
         <!-- Tombol -->
         <div class="d-flex gap-3 mt-3">
-            <a href="dashboard_mahasiswa.php" class="btn btn-secondary btn-custom">Kembali</a>
+            <a href="dashboard_dosen.php" class="btn btn-secondary btn-custom">Kembali</a>
 
             <a onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" 
                href="hapus.php?id_projek=<?= $row['id_projek'] ?>" 
@@ -129,4 +154,4 @@ $row = mysqli_fetch_assoc($result);
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

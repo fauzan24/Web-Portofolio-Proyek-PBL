@@ -87,7 +87,7 @@
         <li class="nav-item"><a class="nav-link active" href="#">Beranda</a></li>
         <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
         <li class="nav-item"><a class="nav-link" href="daftar.html">Daftar Akun</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
       </ul>
     </div>
   </div>

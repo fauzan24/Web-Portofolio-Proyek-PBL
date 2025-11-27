@@ -1,8 +1,8 @@
 <?php
-include "koneksi.php";
-include "template_admin/header.php";
-include "template_admin/sidebar.php";
-include "template_admin/topbar.php";
+include "../koneksi.php";
+include "../template_admin/header.php";
+include "../template_admin/sidebar.php";
+include "../template_admin/topbar.php";
 
 // Query ambil data user
 $result = mysqli_query($koneksi, "SELECT * FROM users ORDER BY id_user DESC");
@@ -84,4 +84,4 @@ $result = mysqli_query($koneksi, "SELECT * FROM users ORDER BY id_user DESC");
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

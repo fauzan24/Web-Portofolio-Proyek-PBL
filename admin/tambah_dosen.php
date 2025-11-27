@@ -1,8 +1,8 @@
 <?php
-include "koneksi.php";
-include "template_admin/header.php";
-include "template_admin/sidebar.php";
-include "template_admin/topbar.php";
+include "../koneksi.php";
+include "../template_admin/header.php";
+include "../template_admin/sidebar.php";
+include "../template_admin/topbar.php";
 ?>
 
 <style>
@@ -73,4 +73,4 @@ include "template_admin/topbar.php";
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

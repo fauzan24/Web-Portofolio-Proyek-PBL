@@ -1,10 +1,10 @@
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 // Template
-include "template/sidebar.php";
-include "template/header.php";
-include "template/topbar.php";
+include "../template/sidebar.php";
+include "../template/header.php";
+include "../template/topbar.php";
 
 // Query ambil data proyek
 $id_projek = $_GET['id_projek'];
@@ -121,7 +121,7 @@ $row = mysqli_fetch_assoc($result);
             <div class="mb-4">
                 <label class="form-label">Foto Proyek</label>
                 <br>
-                <img src="gambar/<?= $row['foto'] ?>" class="project-img">
+                <img src="../gambar/<?= $row['foto'] ?>" class="project-img">
                 <input type="file" name="foto" class="form-control mt-2" accept="image/*">
             </div>
 
@@ -136,4 +136,4 @@ $row = mysqli_fetch_assoc($result);
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

@@ -1,11 +1,11 @@
 <?php
-include "koneksi.php";
-include "template_admin/header.php";
-include "template_admin/sidebar.php";
-include "template_admin/topbar.php";
+include "../koneksi.php";
+include "../template_admin/header.php";
+include "../template_admin/sidebar.php";
+include "../template_admin/topbar.php";
 
 // Query ambil data user
-$result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORDER BY id_user DESC");
+$result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'mahasiswa' ORDER BY id_user DESC");
 ?>
 
 <style>
@@ -26,12 +26,12 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORD
 
 <div class="content-wrapper">
 
-  <h3 class="fw-bold">Kelola Dosen</h3>
+  <h3 class="fw-bold">Kelola Mahasiswa</h3>
   <p class="text-muted">Daftar seluruh user yang terdaftar pada sistem</p>
 
   <div class="card card-custom mt-3">
 
-    <a href="tambah_dosen.php" class="btn btn-primary mb-3">
+    <a href="tambah_mahasiswa.php" class="btn btn-primary mb-3">
       + Tambah User
     </a>
 
@@ -41,7 +41,8 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORD
           <th>No</th>
           <th>Nama</th>
           <th>Username</th>
-          <th>NIP</th>
+          <th>NIM</th>
+          <th>Jurusan</th>
           <th>Password</th>
           <th>Role</th>
           <th>Aksi</th>
@@ -57,6 +58,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORD
             <td><?= $row['nama'] ?></td>
             <td><?= $row['username'] ?></td>
             <td><?= $row['nim'] ?></td>
+            <td><?= $row['jurusan'] ?></td>
             <td><?= $row['password'] ?></td>
             <td class="text-center">
               <span class="badge 
@@ -66,7 +68,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORD
               </span>
             </td>
             <td class="text-center">
-              <a href="edit_dosen.php?id=<?= $row['id_user'] ?>" class="btn btn-warning btn-sm">
+              <a href="edit_mahasiswa.php?id=<?= $row['id_user'] ?>" class="btn btn-warning btn-sm">
                 Edit
               </a>
               <a href="hapus_user.php?id=<?= $row['id_user'] ?>" class="btn btn-danger btn-sm"
@@ -84,4 +86,4 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORD
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

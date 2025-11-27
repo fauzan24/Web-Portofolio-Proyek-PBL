@@ -1,8 +1,8 @@
 <?php
-include "koneksi.php";
-include "template_admin/header.php";
-include "template_admin/sidebar.php";
-include "template_admin/topbar.php";
+include "../koneksi.php";
+include "../template_admin/header.php";
+include "../template_admin/sidebar.php";
+include "../template_admin/topbar.php";
 
 if (isset($_GET['id'])) {
     $id_user = $_GET['id'];
@@ -92,4 +92,4 @@ if (isset($_GET['id'])) {
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

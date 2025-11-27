@@ -5,7 +5,7 @@
   <h4 class="text-center fw-bold mb-4">Dashboard Dosen</h4>
 
   <ul class="nav flex-column">
-    <li><a class="nav-link active text-white" href="dashboard_mahasiswa.php"><i class="fa-solid fa-house me-2"></i> Beranda</a></li>
+    <li><a class="nav-link active text-white" href="../dosen/dashboard_dosen.php"><i class="fa-solid fa-house me-2"></i> Beranda</a></li>
     <li><a class="nav-link text-white" href="laporan.php"><i class="fa-solid fa-plus me-2"></i> Laporan</a></li>
   </ul>
 

@@ -1,10 +1,13 @@
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 // Load template
-include "template_dosen/header.php";
-include "template_dosen/sidebar.php";
-include "template_dosen/topbar.php";
+include "../template_dosen/header.php";
+include "../template_dosen/sidebar.php";
+include "../template_dosen/topbar.php";
+
+$id_user = $_SESSION['id_user'];
+$nama = $_SESSION['nama'];
 
 // Query ambil data proyek
 $result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC");
@@ -13,7 +16,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC")
 <style>
   .content-wrapper {
     margin-left: 240px;
-    padding: 120px 30px 40px;
+    padding: 90px 30px 40px;
   }
 
   .project-card {
@@ -37,6 +40,8 @@ $result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC")
 </style>
 
 <div class="content-wrapper">
+  <h3 class="fw-bold">Selamat Datang <?= $nama ?></h3>
+  <p class="text-muted">Daftar seluruh user yang terdaftar pada sistem</p>
 
   <!-- Search -->
   <div class="container text-center mb-4">
@@ -54,7 +59,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC")
 
           <h5><?= $row['judul'] ?></h5>
 
-          <img src="gambar/<?= $row['foto'] ?>" class="img-fluid rounded mb-3" style="height:140px; object-fit:cover;">
+          <img src="../gambar/<?= $row['foto'] ?>" class="img-fluid rounded mb-3" style="height:140px; object-fit:cover;">
 
           <p class="text-muted"><?= substr($row['deskripsi'], 0, 120) ?>...</p>
 
@@ -70,4 +75,4 @@ $result = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DESC")
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

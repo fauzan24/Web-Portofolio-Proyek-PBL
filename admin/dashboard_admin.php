@@ -1,8 +1,11 @@
 <?php
-include "koneksi.php";
-include "template_admin/header.php";
-include "template_admin/sidebar.php";
-include "template_admin/topbar.php";
+include "../koneksi.php";
+include "../template_admin/header.php";
+include "../template_admin/sidebar.php";
+include "../template_admin/topbar.php";
+
+$id_user = $_SESSION['id_user'];
+$nama = $_SESSION['nama'];
 
 // Hitung jumlah data
 $jumlahProjek = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM projek"))['total'];
@@ -37,8 +40,7 @@ $dataProjek = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DE
 </style>
 
 <div class="content-wrapper">
-
-  <h3 class="fw-bold">Dashboard Admin</h3>
+  <h3 class="fw-bold">Selamat Datang  <?= $nama ?></h3>
   <p class="text-muted">Ringkasan aktivitas sistem</p>
 
   <!-- CARD STATISTIK -->
@@ -69,4 +71,4 @@ $dataProjek = mysqli_query($koneksi, "SELECT * FROM projek ORDER BY id_projek DE
 
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>
