@@ -38,6 +38,15 @@ include "../koneksi.php";
     transform: translateY(-2px);
   }
 
+  .project-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* jumlah baris yang ditampilkan */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 60px; /* opsional agar rapi */
+  }
+
     .form-container {
     background: rgba(255, 255, 255, 0.88);
     border-radius: 15px;

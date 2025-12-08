@@ -6,10 +6,11 @@ $username = $_POST['username'];
 $nim = $_POST['nim'];
 $password = $_POST['password'];
 $role = $_POST['role'];
+$profil = $_POST['profil'];
 
 // Query insert data
-$query = mysqli_query($koneksi, "INSERT INTO users (nama, username, nim, password, role) VALUES (
-    '$nama', '$username', '$nim', '$password', '$role'
+$query = mysqli_query($koneksi, "INSERT INTO users (nama, username, nim, password, role, profil) VALUES (
+    '$nama', '$username', '$nim', '$password', '$role', '$profil'
 )");
 
 if ($query) {

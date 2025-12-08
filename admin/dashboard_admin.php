@@ -7,6 +7,12 @@ include "../template_admin/topbar.php";
 $id_user = $_SESSION['id_user'];
 $nama = $_SESSION['nama'];
 
+if (!isset($_SESSION['id_user'])) {
+    echo "<script>alert('Silakan login terlebih dahulu'); 
+          window.location='../login.php';</script>";
+    exit;
+}
+
 // Hitung jumlah data
 $jumlahProjek = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM projek"))['total'];
 $jumlahMahasiswa = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM users WHERE role = 'mahasiswa'"))['total'];

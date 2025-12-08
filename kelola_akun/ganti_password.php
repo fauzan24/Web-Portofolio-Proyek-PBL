@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "../koneksi.php";
 
 // Template
@@ -10,6 +9,42 @@ include "../template/topbar.php";
 $id_user = $_SESSION['id_user'];
 $query = mysqli_query($koneksi, "SELECT * FROM users WHERE id_user='$id_user'");
 $user = mysqli_fetch_assoc($query);
+
+// Tentukan role
+$role = $user['role'];
+
+
+// ===============================
+// LOAD TEMPLATE SESUAI ROLE
+// ===============================
+if ($role == 'admin') {
+    include "../template_admin/sidebar.php";
+    include "../template_admin/header.php";
+    include "../template_admin/topbar.php";
+
+} elseif ($role == 'dosen') {
+    include "../template_dosen/sidebar.php";
+    include "../template_dosen/header.php";
+    include "../template_dosen/topbar.php";
+
+} else { // mahasiswa
+    include "../template/sidebar.php";
+    include "../template/header.php";
+    include "../template/topbar.php";
+}
+
+
+// ===============================
+// TOMBOL KEMBALI SESUAI ROLE
+// ===============================
+if ($role == 'admin') {
+    $link_kembali = "../admin/dashboard_admin.php";
+} elseif ($role == 'dosen') {
+    $link_kembali = "../dosen/dashboard_dosen.php";
+} else {
+    $link_kembali = "../mahasiswa/dashboard_mahasiswa.php";
+}
+
 ?>
 
 <style>

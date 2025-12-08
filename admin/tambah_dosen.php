@@ -60,6 +60,7 @@ include "../template_admin/topbar.php";
                 <label class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" required placeholder="Masukkan password">
             </div>
+            <input type="file" hidden name="profil" value="../gambar/user.png">
 
             <input type="hidden" name="role" value="dosen">
 

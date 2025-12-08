@@ -69,10 +69,10 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORD
               <a href="edit_dosen.php?id=<?= $row['id_user'] ?>" class="btn btn-warning btn-sm">
                 Edit
               </a>
-              <a href="hapus_user.php?id=<?= $row['id_user'] ?>" class="btn btn-danger btn-sm"
-                 onclick="return confirm('Yakin ingin menghapus user ini?')">
+              <a href="hapus.php?id=<?= $row['id_user'] ?>&page=dosen" class="btn btn-danger btn-sm"onclick="return confirm('Yakin ingin menghapus user ini?')">
                 Hapus
               </a>
+
             </td>
           </tr>
         <?php } ?>

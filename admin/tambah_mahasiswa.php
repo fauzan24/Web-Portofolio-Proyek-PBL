@@ -39,48 +39,54 @@ include "../template_admin/topbar.php";
     <div class="form-card">
         <h3 class="fw-bold mb-4 text-primary">Tambah Data Mahasiswa</h3>
 
-        <form action="proses_tambah_Mahasiswa.php" method="POST">
+       <form action="proses_tambah_Mahasiswa.php" method="POST" enctype="multipart/form-data">
 
-            <div class="mb-3">
-                <label class="form-label">Nama Lengkap</label>
-                <input type="text" name="nama" class="form-control" required placeholder="Masukkan nama ">
-            </div>
+    <div class="mb-3">
+        <label class="form-label">Nama Lengkap</label>
+        <input type="text" name="nama" class="form-control" required placeholder="Masukkan nama ">
+    </div>
 
-            <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" required placeholder="Masukkan username ">
-            </div>
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" required placeholder="Masukkan username ">
+    </div>
 
-            <div class="mb-3">
-                <label class="form-label">NIM</label>
-                <input type="text" name="nim" class="form-control" placeholder="Masukkan NIM">
-            </div>
+    <div class="mb-3">
+        <label class="form-label">NIM</label>
+        <input type="text" name="nim" class="form-control" placeholder="Masukkan NIM">
+    </div>
 
-           <div class="mb-3">
-                <label class="form-label">Jurusan</label>
-                <select name="jurusan" class="form-control" required>
-                    <option value="">-- Pilih Jurusan --</option>
-                    <option value="Teknik Informatika">Teknik Informatika</option>
-                    <option value="Teknik Elektro">Teknik Elektro</option>
-                    <option value="Teknik mesin">Teknik mesin</option>
-                    <option value="Manajemen bisnis">Manajemen Bisnis</option>
-                </select>
-            </div>
+    <div class="mb-3">
+        <label class="form-label">Jurusan</label>
+        <select name="jurusan" class="form-control" required>
+            <option value="">-- Pilih Jurusan --</option>
+            <option value="Teknik Informatika">Teknik Informatika</option>
+            <option value="Teknik Elektro">Teknik Elektro</option>
+            <option value="Teknik mesin">Teknik Mesin</option>
+            <option value="Manajemen bisnis">Manajemen Bisnis</option>
+        </select>
+    </div>
 
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required placeholder="Masukkan password">
+    </div>
 
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" required placeholder="Masukkan password">
-            </div>
+    <!-- Upload Foto -->
+    <div class="mb-3">
+        <label class="form-label">Foto Profil (opsional)</label>
+        <input type="file" name="profil" class="form-control">
+    </div>
 
-            <input type="hidden" name="role" value="Mahasiswa">
+    <input type="hidden" name="role" value="Mahasiswa">
 
-            <div class="d-flex gap-2 mt-4">
-                <a href="kelola_mahasiswa.php" class="btn btn-secondary btn-custom">Kembali</a>
-                <button type="submit" class="btn btn-primary btn-custom">Simpan</button>
-            </div>
-            
-        </form>
+    <div class="d-flex gap-2 mt-4">
+        <a href="kelola_mahasiswa.php" class="btn btn-secondary btn-custom">Kembali</a>
+        <button type="submit" class="btn btn-primary btn-custom">Simpan</button>
+    </div>
+
+</form>
+
     </div>
 
 </div>

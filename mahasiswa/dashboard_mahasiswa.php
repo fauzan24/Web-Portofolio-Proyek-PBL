@@ -25,7 +25,7 @@ $nama = $_SESSION['nama'];
 
             <h5><?= $row['judul'] ?></h5>
             <img src="../gambar/<?= $row['foto'] ?>" class="project-img" style="width:100%; height:160px; object-fit:cover; border-radius:10px;">
-            <p><?= $row['deskripsi'] ?></p>
+            <p class="project-description"><?= $row['deskripsi'] ?></p>
 
             <a href="detail_proyek.php?id_projek=<?= $row['id_projek'] ?>" 
                class="btn btn-primary mt-2 w-100">

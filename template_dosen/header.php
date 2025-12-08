@@ -1,5 +1,6 @@
 <?php
 include "../koneksi.php";
+// Cek login
 ?>
 <!DOCTYPE html>
 <html lang="id">

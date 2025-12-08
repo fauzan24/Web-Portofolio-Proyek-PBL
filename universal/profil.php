@@ -15,7 +15,7 @@ $id_user = $_SESSION['id_user'];
 
 // Ambil data user dari database
 $result = mysqli_query($koneksi, "SELECT * FROM users WHERE id_user = '$id_user'");
-$dataUser = mysqli_fetch_assoc($result);  // <- nama DIUBAH agar tidak bentrok
+$dataUser = mysqli_fetch_assoc($result); 
 
 // Jika user tidak ditemukan
 if (!$dataUser) {
@@ -141,7 +141,7 @@ if ($role == 'admin') {
 
         <!-- Profile Header -->
         <div class="profile-header">
-            <img src="../asset/profile_default.png" class="profile-db">
+            <img src="<?= $profil?>" class="profile-db">
             <div>
                 <h2 class="profile-title"><?= $dataUser['nama'] ?></h2>
                 <p class="text-secondary mb-0">@<?= $dataUser['username'] ?></p>

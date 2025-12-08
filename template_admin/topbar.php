@@ -2,6 +2,12 @@
 session_start();
 include "../koneksi.php";
 
+if (!isset($_SESSION['id_user'])) {
+    echo "<script>alert('Silakan login terlebih dahulu'); 
+          window.location='../login.php';</script>";
+    exit;
+}
+
 $id_user = $_SESSION['id_user'];
 $nama = $_SESSION['nama'];
 ?>
