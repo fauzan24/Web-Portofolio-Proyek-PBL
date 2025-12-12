@@ -6,11 +6,11 @@ $username = $_POST['username'];
 $nim = $_POST['nim'];
 $password = $_POST['password'];
 $role = $_POST['role'];
-$profil = $_POST['profil'];
+$namaFile = "../gambar/dosen.jpeg"; // Foto default
 
 // Query insert data
 $query = mysqli_query($koneksi, "INSERT INTO users (nama, username, nim, password, role, profil) VALUES (
-    '$nama', '$username', '$nim', '$password', '$role', '$profil'
+    '$nama', '$username', '$nim', '$password', '$role', '$namaFile'
 )");
 
 if ($query) {

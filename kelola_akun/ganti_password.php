@@ -79,6 +79,79 @@ if ($role == 'admin') {
         border-radius: 8px;
         width: 100%;
     }
+
+    /* ============================= */
+/*          RESPONSIVE          */
+/* ============================= */
+
+@media (max-width: 1200px) {
+    .content-wrapper {
+        margin-left: 230px;
+        padding: 110px 50px;
+    }
+
+    .profile-card {
+        padding: 34px;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        margin-left: 0 !important; /* sidebar collapse ke mode mobile */
+        padding: 100px 35px;
+    }
+
+    .profile-card {
+        padding: 30px;
+        max-width: 100%;
+        border-radius: 16px;
+    }
+
+    .profile-title {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-custom {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 90px 22px;
+    }
+
+    .profile-card {
+        padding: 26px;
+    }
+
+    .profile-input {
+        padding: 9px 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-wrapper {
+        padding: 80px 18px;
+    }
+
+    .profile-title {
+        font-size: 18px;
+    }
+
+    .profile-card {
+        padding: 22px;
+    }
+}
+
 </style>
 
 <div class="content-wrapper">
@@ -111,7 +184,7 @@ if ($role == 'admin') {
             </div>
 
             <div class="d-flex justify-content-between mt-3 gap-3">
-                <a href="../universal/profil.php" class="btn btn-secondary btn-custom">Kembali</a>
+                <a href="../universal/profil.php?id_user=<?= $id_user ?>" class="btn btn-secondary btn-custom">Kembali</a>
                 <button type="submit" class="btn btn-primary btn-custom">Simpan Password</button>
             </div>
 

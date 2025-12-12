@@ -28,7 +28,7 @@ $nama = $_SESSION['nama'];
        id="dropdownProfile" data-bs-toggle="dropdown" aria-expanded="false">
 
         <span class="fw-semibold d-none d-sm-inline me-2"><?= $nama?></span>
-        <img src="../asset/fauzan.jpg" class="profile-img">
+        <img src="<?= $profil?>" class="profile-img">
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end shadow">

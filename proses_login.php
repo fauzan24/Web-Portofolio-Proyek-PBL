@@ -26,6 +26,7 @@ $_SESSION['nama'] = $user['nama'];
 $_SESSION['username'] = $user['username'];
 $_SESSION['role'] = $user['role'];
 $_SESSION['profil'] = $user['profil'];
+$_SESSION['jurusan'] = $user['jurusan'];
 
 // Arahkan sesuai role
 if ($user['role'] == 'mahasiswa') {

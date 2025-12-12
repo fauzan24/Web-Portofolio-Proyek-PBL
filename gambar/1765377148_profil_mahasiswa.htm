@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Dosen</title>
+
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: white;
+    }
+
+    .profile-img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #0b3551;
+    }
+
+    .btn-dark-custom {
+      background-color: #343a40;
+      border-color: #343a40;
+      width: 48%;
+      font-weight: bold;
+      padding: 10px 0;
+    }
+
+      .btn-dark-custom:hover {
+    background-color: #212529;
+    transform: translateY(-2px);
+  }
+
+    .form-container {
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 15px;
+    padding: 30px;
+    width: 900px;
+    margin-top: 20px;
+  }
+    .dropdown-menu { z-index: 3000 !important; }
+  </style>
+</head>
+<body>
+<!-- SIDEBAR DESKTOP -->
+<div class="sidebar d-none d-lg-block" 
+     style="width:240px; height:100vh; position:fixed; top:0; left:0; background:#0b3551; padding-top:20px; color:white;">
+
+  <h4 class="text-center fw-bold mb-4">Dashboard Dosen</h4>
+
+  <ul class="nav flex-column">
+    <li><a class="nav-link active text-white" href="../dosen/dashboard_dosen.php"><i class="fa-solid fa-house me-2"></i> Beranda</a></li>
+    <li><a class="nav-link text-white" href="../dosen/laporan.php"><i class="fa-solid fa-plus me-2"></i> Laporan</a></li>
+  </ul>
+
+</div>
+<br />
+<b>Notice</b>:  session_start(): Ignoring session_start() because a session is already active in <b>C:\laragon\www\portolearn\template_dosen\topbar.php</b> on line <b>2</b><br />
+<!-- HEADER -->
+<div class="header shadow"
+     style="margin-left:240px; padding:15px 25px; background:white; display:flex;
+            justify-content:flex-end; align-items:center; position:fixed; top:0; left:0; 
+            right:0; height:70px; z-index:2000; border-bottom:1px solid white;">
+
+  <!-- Tombol sidebar untuk HP -->
+  <button class="btn btn-outline-dark d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <!-- Profile Dropdown -->
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
+       id="dropdownProfile" data-bs-toggle="dropdown" aria-expanded="false">
+
+        <span class="fw-semibold d-none d-sm-inline me-2">afung</span>
+        <img src="" class="profile-img">
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end shadow">
+      <li><a class="dropdown-item" href="../universal/profil.php"><i class="fa-solid fa-user me-2"></i> Profil</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item text-danger" href="../logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- SIDEBAR MOBILE (OFFCANVAS) -->
+<div class="offcanvas offcanvas-start" id="mobileSidebar">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <a class="nav-link mb-2" href="#"><i class="fa-solid fa-house me-2"></i> Beranda</a>
+    <a class="nav-link mb-2" href="#"><i class="fa-solid fa-circle-info me-2"></i> Tentang</a>
+    <a class="nav-link mb-2" href="form_tambah_proyek.php"><i class="fa-solid fa-plus me-2"></i> Tambah Proyek</a>
+  </div>
+</div>
+
+<style>
+    .content-wrapper {
+        margin-left: 240px;
+        padding: 100px 40px;
+    }
+
+    .profile-card {
+        background: #ffffff;
+        padding: 40px;
+        max-width: 650px;
+        margin: auto;
+        border-radius: 18px;
+        box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+    }
+
+    .profile-img-detail {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #0b3551;
+    }
+
+    .info-label {
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+    .info-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .info-box {
+        background: #f8fbff;
+        padding: 15px 18px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #e3e7ed;
+    }
+
+    .btn-back {
+        padding: 10px 22px;
+        border-radius: 10px;
+    }
+
+    .project-card {
+        background: #ffffff;
+        padding: 18px;
+        border-radius: 15px;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+        transition: 0.2s;
+        text-align: center;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="content-wrapper">
+
+    <!-- =============================== -->
+    <!--   PROFILE CARD MAHASISWA        -->
+    <!-- =============================== -->
+    <div class="profile-card text-center">
+
+        <img src="../asset/profile_default.png" class="profile-img-detail" alt="Foto Profil">
+
+        <h3 class="fw-bold mb-1"><br />
+<b>Fatal error</b>:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\portolearn\dosen\profil_mahasiswa.php:133
+Stack trace:
+#0 {main}
+  thrown in <b>C:\laragon\www\portolearn\dosen\profil_mahasiswa.php</b> on line <b>133</b><br />

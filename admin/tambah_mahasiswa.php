@@ -72,12 +72,6 @@ include "../template_admin/topbar.php";
         <input type="password" name="password" class="form-control" required placeholder="Masukkan password">
     </div>
 
-    <!-- Upload Foto -->
-    <div class="mb-3">
-        <label class="form-label">Foto Profil (opsional)</label>
-        <input type="file" name="profil" class="form-control">
-    </div>
-
     <input type="hidden" name="role" value="Mahasiswa">
 
     <div class="d-flex gap-2 mt-4">

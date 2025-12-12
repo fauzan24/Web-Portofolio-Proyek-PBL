@@ -5,17 +5,10 @@ $nama = $_POST['nama'];
 $username = $_POST['username'];
 $nim = $_POST['nim'];
 $jurusan = $_POST['jurusan'];
-$password = $_POST['password']; // TANPA HASH
+$password = $_POST['password'];
 $role = $_POST['role'];
+$namaFile = "../gambar/user.png"; // Foto default
 
-// Upload foto
-if (!empty($_FILES['profil']['name'])) {
-    $namaFile = time() . "_" . $_FILES['profil']['name'];
-    $tmp = $_FILES['profil']['tmp_name'];
-    move_uploaded_file($tmp, "../gambar/" . $namaFile);
-} else {
-    $namaFile = "../gambar/user.png"; // Foto default
-}
 
 // Query insert data
 $query = mysqli_query($koneksi, 

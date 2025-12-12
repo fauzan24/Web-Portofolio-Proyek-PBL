@@ -39,7 +39,7 @@ include "../template_admin/topbar.php";
     <div class="form-card">
         <h3 class="fw-bold mb-4 text-primary">Tambah Data Dosen</h3>
 
-        <form action="proses_tambah_dosen.php" method="POST">
+        <form action="proses_tambah_dosen.php" method="POST" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label class="form-label">Nama Lengkap</label>
@@ -60,7 +60,6 @@ include "../template_admin/topbar.php";
                 <label class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" required placeholder="Masukkan password">
             </div>
-            <input type="file" hidden name="profil" value="../gambar/user.png">
 
             <input type="hidden" name="role" value="dosen">
 

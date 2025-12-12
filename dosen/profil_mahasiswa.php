@@ -1,27 +1,14 @@
 <?php
-session_start();
-include "../koneksi.php";
-
-// Cek login
-if (!isset($_SESSION['id_user'])) {
-    echo "<script>alert('Silakan login terlebih dahulu'); 
-          window.location='../login.php';</script>";
-    exit;
-}
-
-// Cek id_user dari URL
-if (!isset($_GET['id_user'])) {
-    echo "<script>alert('Data tidak ditemukan'); window.location='dashboard_dosen.php';</script>";
-    exit;
-}
-
+include '../koneksi.php';
 $id_mhs = $_GET['id_user'];
 
 // Ambil data mahasiswa
-$query = mysqli_query($koneksi, 
-    "SELECT * FROM users 
-     WHERE id_user = '$id_mhs' AND role='mahasiswa'"
-);
+$query = mysqli_query($koneksi, "SELECT * FROM users WHERE `id_user` = '$id_mhs' AND `role` ='mahasiswa'");
+
+if (!$query) {
+    die("Query profil gagal: " . mysqli_error($koneksi));
+}
+
 $profil = mysqli_fetch_assoc($query);
 
 if (!$profil) {
@@ -29,14 +16,17 @@ if (!$profil) {
     exit;
 }
 
-// Ambil proyek berdasarkan ketua atau anggota yang mengandung nama mahasiswa
+// Ambil daftar proyek mahasiswa
 $projek = mysqli_query($koneksi, 
     "SELECT * FROM projek 
      WHERE id_user = '$id_mhs' 
      ORDER BY id_projek DESC"
 );
 
-
+// Cek error query projek
+if (!$projek) {
+    die("Query proyek gagal: " . mysqli_error($koneksi));
+}
 
 // Load template
 include "../template_dosen/header.php";
@@ -120,17 +110,16 @@ include "../template_dosen/topbar.php";
     <!-- =============================== -->
     <div class="profile-card text-center">
 
-        <img src="../asset/profile_default.png" class="profile-img-detail" alt="Foto Profil">
+        <img src="<?=$profil['profil']?>" class="profile-img-detail" alt="Foto Profil">
 
-        <h3 class="fw-bold mb-1"><?= $profil['nama'] ?></h3>
-        <p class="text-muted mb-0">@<?= $profil['username'] ?></p>
+        <h3 class="fw-bold mb-1"><?= $profil['nama']?></h3>
+        <p class="text-muted mb-0">@<?= $profil['username']?></p>
         <p class="text-primary fw-semibold" style="font-size: 15px;">
             Mahasiswa | <?= $profil['jurusan'] ?>
         </p>
 
         <hr class="my-4">
 
-        <!-- Informasi Detail -->
         <div class="info-box">
             <div class="info-label">Nama Lengkap</div>
             <div class="info-value"><?= $profil['nama'] ?></div>
@@ -159,31 +148,44 @@ include "../template_dosen/topbar.php";
 
     </div>
 
-    <!-- =============================== -->
-    <!--  DAFTAR PROYEK MAHASISWA       -->
-    <!-- =============================== -->
-    <h3 class="fw-bold mt-5 mb-3">Proyek Milik <?= $profil['nama'] ?></h3>
+  <!-- =============================== -->
+<!--  DAFTAR PROYEK MAHASISWA       -->
+<!-- =============================== -->
+<h3 class="fw-bold mt-5 mb-3">Proyek Milik <?= $profil['nama'] ?></h3>
 
-    <div class="row">
+<div class="row">
 
-        <?php if (mysqli_num_rows($projek) == 0) { ?>
-            <p class="text-muted">Mahasiswa ini belum memiliki proyek.</p>
-        <?php } ?>
+    <?php if (mysqli_num_rows($projek) == 0) : ?>
 
-        <?php while ($p = mysqli_fetch_assoc($projek)) { ?>
+        <p class="text-muted">Mahasiswa ini belum memiliki proyek.</p>
+
+    <?php else: ?>
+
+        <?php while ($p = mysqli_fetch_assoc($projek)) : ?>
+
+            <?php 
+            // WAJIB: pastikan hasil fetch adalah array
+            if (!is_array($p)) continue;
+
+            // Semua data dijaga agar tidak melempar error offset
+            $foto       = $p['foto'] ?? 'default.png';
+            $judul      = $p['judul'] ?? '(Tanpa Judul)';
+            $deskripsi  = $p['deskripsi'] ?? '';
+            $id_projek  = $p['id_projek'] ?? 0;
+            ?>
 
             <div class="col-md-4 mb-4">
                 <div class="project-card">
 
-                    <img src="../gambar/<?= $p['foto'] ?>" class="project-img">
+                    <img src="../gambar/<?= $foto ?>" class="project-img">
 
-                    <h5 class="fw-bold"><?= $p['judul'] ?></h5>
+                    <h5 class="fw-bold"><?= $judul ?></h5>
 
                     <p class="text-muted" style="font-size: 14px;">
-                        <?= substr($p['deskripsi'], 0, 100) ?>...
+                        <?= substr($deskripsi, 0, 100) ?>...
                     </p>
 
-                    <a href="detail_projek.php?id_projek=<?= $p['id_projek'] ?>" 
+                    <a href="detail_projek.php?id_projek=<?= $id_projek ?>" 
                        class="btn btn-primary px-4"
                        style="border-radius:10px;">
                         Lihat Proyek
@@ -192,7 +194,11 @@ include "../template_dosen/topbar.php";
                 </div>
             </div>
 
-        <?php } ?>
+        <?php endwhile; ?>
+
+    <?php endif; ?>
+
+</div>
 
     </div>
 

@@ -6,10 +6,6 @@ include "../template_dosen/header.php";
 include "../template_dosen/sidebar.php";
 include "../template_dosen/topbar.php";
 
-$id_user = $_SESSION['id_user'];
-$nama = $_SESSION['nama'];
-$profil = $_SESSION['profil'];
-
 // ----------------------------
 // FILTER & SEARCH IMPLEMENTASI
 // ----------------------------
@@ -124,6 +120,54 @@ $jurusanData = mysqli_query($koneksi, "SELECT DISTINCT jurusan FROM users WHERE 
     border-radius: 10px;
     padding: 10px 18px;
   }
+
+  /* ============================== */
+/*     RESPONSIVE CONTENT WRAP     */
+/* ============================== */
+
+@media (max-width: 1200px) {
+  .content-wrapper {
+    padding: 90px 20px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .content-wrapper {
+    margin-left: 0 !important;
+    padding: 85px 20px !important;
+  }
+
+  .filter-container {
+    padding: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-group {
+    flex-direction: column;
+  }
+
+  .search-btn,
+  .reset-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  h3 {
+    font-size: 20px;
+  }
+
+  .profile-card {
+    padding: 15px !important;
+  }
+
+  .profile-img-detail {
+    width: 90px;
+    height: 90px;
+  }
+}
+
 </style>
 
 <div class="content-wrapper">
@@ -188,7 +232,7 @@ $jurusanData = mysqli_query($koneksi, "SELECT DISTINCT jurusan FROM users WHERE 
       <div class="col-md-4 mb-4">
         <div class="profile-card">
 
-          <img src="<<?= $mhs['profil']?>" class="profile-img-detail mb-3">
+          <img src="<?= $mhs['profil']?>" class="profile-img-detail mb-3">
 
           <h5 class="fw-bold mb-1"><?= $mhs['nama'] ?></h5>
 

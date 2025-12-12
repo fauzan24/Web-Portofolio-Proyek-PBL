@@ -1,28 +1,17 @@
 <?php 
-session_start();  // WAJIB DI PALING ATAS
-
-include "../koneksi.php";
-
-// Cek apakah user sudah login
-if (!isset($_SESSION['id_user'])) {
-    echo "<script>alert('Silakan login terlebih dahulu'); 
-          window.location='../login.php';</script>";
-    exit;
-}
-
-// Ambil ID user dari session
+@session_start();
 $id_user = $_SESSION['id_user'];
-
+include '../koneksi.php';
 // Ambil data user dari database
 $result = mysqli_query($koneksi, "SELECT * FROM users WHERE id_user = '$id_user'");
 $dataUser = mysqli_fetch_assoc($result); 
 
 // Jika user tidak ditemukan
-if (!$dataUser) {
-    echo "<script>alert('Data user tidak ditemukan!'); 
-          window.location='../login.php';</script>";
-    exit;
-}
+// if (!$dataUser) {
+//     echo "<script>alert('Data user tidak ditemukan!'); 
+//           window.location='../login.php';</script>";
+//     exit;
+// }
 
 // Tentukan role
 $role = $dataUser['role'];
@@ -132,6 +121,92 @@ if ($role == 'admin') {
         padding: 10px 22px;
         border-radius: 10px;
     }
+
+    /* ============================= */
+/*        RESPONSIVE MODE        */
+/* ============================= */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        margin-left: 240px;
+        padding: 110px 40px;
+    }
+
+    .profile-card {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        margin-left: 0 !important; /* sidebar auto collapse */
+        padding: 100px 30px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-db {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-title {
+        font-size: 22px;
+    }
+
+    .info-value {
+        font-size: 15px;
+    }
+
+    .profile-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 90px 20px;
+    }
+
+    .profile-card {
+        padding: 26px;
+        border-radius: 16px;
+    }
+
+    .btn-custom {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-wrapper {
+        padding: 80px 18px;
+    }
+
+    .profile-db {
+        width: 85px;
+        height: 85px;
+    }
+
+    .profile-title {
+        font-size: 20px;
+    }
+
+    .info-box {
+        padding: 12px 14px;
+    }
+}
+
 </style>
 
 <!-- MAIN CONTENT -->

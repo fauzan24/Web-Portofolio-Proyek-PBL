@@ -8,9 +8,12 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-$id_user = $_SESSION['id_user'];
-$nama = $_SESSION['nama'];
-$profil = $_SESSION['profil'];
+$session_id_user   = $_SESSION['id_user'];
+$session_nama      = $_SESSION['nama'];
+$session_profil    = $_SESSION['profil'];
+$session_username  = $_SESSION['username'];
+$session_jurusan   = $_SESSION['jurusan'];
+
 ?>
 <!-- HEADER -->
 <div class="header shadow"
@@ -28,8 +31,8 @@ $profil = $_SESSION['profil'];
     <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
        id="dropdownProfile" data-bs-toggle="dropdown" aria-expanded="false">
 
-        <span class="fw-semibold d-none d-sm-inline me-2"><?=$nama?></span>
-        <img src="<?= $profil?>" class="profile-img">
+        <span class="fw-semibold d-none d-sm-inline me-2"><?=$session_nama?></span>
+        <img src="<?= $session_profil?>" class="profile-img">
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end shadow">

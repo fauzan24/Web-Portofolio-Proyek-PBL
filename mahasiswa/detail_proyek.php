@@ -37,6 +37,7 @@ $penilaian_query = mysqli_query($koneksi,
         padding: 120px 60px 60px;
         background: #f4f7fb;
         min-height: 100vh;
+        transition: all 0.3s ease-in-out;
     }
 
     .project-card {
@@ -66,23 +67,87 @@ $penilaian_query = mysqli_query($koneksi,
         border-radius: 10px;
         box-shadow: 0 5px 22px rgba(0,0,0,0.12);
         width: 100%;
-        max-height: 380px;
+        
         object-fit: cover;
     }
 
-    .komentar-box, .penilaian-box {
+    .komentar-box, 
+    .penilaian-box {
         background: #f7faff;
         border-left: 4px solid #0b3551;
         padding: 12px 18px;
         border-radius: 8px;
         margin-bottom: 12px;
+        word-break: break-word;
     }
 
     .btn-custom {
         padding: 10px 28px;
         border-radius: 10px;
     }
+
+    /* ============================================
+       RESPONSIVE SECTION – PERBAIKAN MOBILE/TABLET
+    ============================================ */
+
+    @media (max-width: 992px) {
+        .content-wrapper {
+            margin-left: 0 !important;  /* sidebar hilang → konten full width */
+            padding: 100px 25px 40px !important;
+        }
+
+        .project-card {
+            padding: 25px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        h2.fw-bold {
+            font-size: 24px;
+        }
+
+        .section-title {
+            font-size: 14px;
+        }
+
+        .project-image {
+            max-height: 260px;
+        }
+
+        .d-flex.gap-3 {
+            flex-wrap: wrap;        /* tombol kebawah */
+            gap: 12px !important;
+        }
+
+        .btn-custom {
+            width: 100%;            /* tombol full untuk HP */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content-wrapper {
+            padding: 90px 18px 35px !important;
+        }
+
+        .project-card {
+            padding: 18px;
+            border-radius: 14px;
+        }
+
+        h2.fw-bold {
+            font-size: 20px;
+        }
+
+        .project-image {
+            max-height: 220px;
+        }
+
+        p, .komentar-box, .penilaian-box {
+            font-size: 14px;
+        }
+    }
 </style>
+
 
 <!-- MAIN CONTENT -->
 <div class="content-wrapper">
