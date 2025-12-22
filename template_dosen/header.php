@@ -13,9 +13,17 @@ include "../koneksi.php";
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    :root {
+      --sidebar-width: 240px;
+      --header-height: 70px;
+      --footer-height: 55px;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: white;
+      padding-top: var(--header-height);
+      padding-bottom: var(--footer-height);
     }
 
     .profile-img {
@@ -34,19 +42,41 @@ include "../koneksi.php";
       padding: 10px 0;
     }
 
-      .btn-dark-custom:hover {
-    background-color: #212529;
-    transform: translateY(-2px);
-  }
+    .btn-dark-custom:hover {
+      background-color: #212529;
+      transform: translateY(-2px);
+    }
 
     .form-container {
-    background: rgba(255, 255, 255, 0.88);
-    border-radius: 15px;
-    padding: 30px;
-    width: 900px;
-    margin-top: 20px;
-  }
-    .dropdown-menu { z-index: 3000 !important; }
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 15px;
+      padding: 30px;
+      width: 900px;
+      margin-top: 20px;
+    }
+
+    /* HEADER RESPONSIVE */
+    .header {
+      margin-left: var(--sidebar-width);
+      height: var(--header-height);
+    }
+
+    @media (max-width: 992px) {
+      .header {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .profile-img {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    .dropdown-menu {
+      z-index: 3000 !important;
+    }
   </style>
 </head>
 <body>

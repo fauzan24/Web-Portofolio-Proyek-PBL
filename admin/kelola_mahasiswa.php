@@ -9,19 +9,47 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'mahasiswa'
 ?>
 
 <style>
+/* ================= CONTENT ================= */
+.content-wrapper {
+  margin-left: 240px;
+  padding: 100px 30px 90px; /* aman header & footer */
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* ================= CARD ================= */
+.card-custom {
+  border-radius: 15px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* ================= TABLE ================= */
+.table thead {
+  background-color: #0b3551;
+  color: white;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 991px) {
   .content-wrapper {
-    margin-left: 240px;
-    padding: 100px 30px 40px;
+    margin-left: 0;
+    padding: 95px 20px 90px;
   }
-  .card-custom {
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 576px) {
+  h3.fw-bold {
+    font-size: 20px;
   }
-  .table thead {
-    background-color: #0b3551;
-    color: white;
-  }
+}
 </style>
 
 <div class="content-wrapper">
@@ -35,54 +63,60 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'mahasiswa'
       + Tambah User
     </a>
 
-    <table class="table table-bordered table-striped table-hover align-middle">
-      <thead>
-        <tr class="text-center">
-          <th>No</th>
-          <th>Nama</th>
-          <th>Username</th>
-          <th>NIM</th>
-          <th>Jurusan</th>
-          <th>Password</th>
-          <th>Role</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <?php 
-        $no = 1;
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-          <tr>
-            <td class="text-center"><?= $no++ ?></td>
-            <td><?= $row['nama'] ?></td>
-            <td><?= $row['username'] ?></td>
-            <td><?= $row['nim'] ?></td>
-            <td><?= $row['jurusan'] ?></td>
-            <td><?= $row['password'] ?></td>
-            <td class="text-center">
-              <span class="badge 
-                <?= ($row['role'] == 'admin' ? 'bg-danger' :
-                    ($row['role'] == 'dosen' ? 'bg-primary' : 'bg-success')) ?>">
-                <?= ucfirst($row['role']) ?>
-              </span>
-            </td>
-            <td class="text-center">
-              <a href="edit_mahasiswa.php?id=<?= $row['id_user'] ?>" class="btn btn-warning btn-sm">
-                Edit
-              </a>
-              <a href="hapus.php?id=<?= $row['id_user'] ?>&page=mahasiswa" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus user ini?')">
-                Hapus
-              </a>
-            </td>
+    <!-- TABLE RESPONSIVE -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle mb-0">
+        <thead>
+          <tr class="text-center">
+            <th>No</th>
+            <th>Nama</th>
+            <th>Username</th>
+            <th>NIM</th>
+            <th>Jurusan</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Aksi</th>
           </tr>
-        <?php } ?>
-      </tbody>
+        </thead>
 
-    </table>
+        <tbody>
+          <?php 
+          $no = 1;
+          while ($row = mysqli_fetch_assoc($result)) { ?>
+            <tr>
+              <td class="text-center"><?= $no++ ?></td>
+              <td><?= $row['nama'] ?></td>
+              <td><?= $row['username'] ?></td>
+              <td><?= $row['nim'] ?></td>
+              <td><?= $row['jurusan'] ?></td>
+              <td><?= $row['password'] ?></td>
+              <td class="text-center">
+                <span class="badge 
+                  <?= ($row['role'] == 'admin' ? 'bg-danger' :
+                      ($row['role'] == 'dosen' ? 'bg-primary' : 'bg-success')) ?>">
+                  <?= ucfirst($row['role']) ?>
+                </span>
+              </td>
+              <td class="text-center">
+                <a href="edit_mahasiswa.php?id=<?= $row['id_user'] ?>" 
+                   class="btn btn-warning btn-sm mb-1">
+                  Edit
+                </a>
+                <a href="hapus.php?id=<?= $row['id_user'] ?>&page=mahasiswa" 
+                   class="btn btn-danger btn-sm mb-1"
+                   onclick="return confirm('Yakin ingin menghapus user ini?')">
+                  Hapus
+                </a>
+              </td>
+            </tr>
+          <?php } ?>
+        </tbody>
+
+      </table>
+    </div>
 
   </div>
 
 </div>
 
-<?php include "../template/footer.php"; ?>
+<?php include "../template_admin/footer.php"; ?>

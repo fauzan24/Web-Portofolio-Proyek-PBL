@@ -12,37 +12,79 @@ if (isset($_GET['id'])) {
 ?>
 
 <style>
+/* ================= MAIN CONTENT ================= */
+.main-content {
+    margin-left: 240px;
+    padding: 120px 40px 90px;
+    background: #f4f7fb;
+    min-height: 100vh;
+}
+
+/* ================= FORM CARD ================= */
+.form-card {
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    max-width: 760px;
+}
+
+/* ================= FORM ================= */
+.form-label {
+    font-weight: 600;
+    color: #0b3551;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    padding: 11px 14px;
+    border: 1px solid #cdd4da;
+}
+
+/* ================= BUTTON ================= */
+.btn-custom {
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 991px) {
     .main-content {
-        margin-left: 240px;
-        padding: 120px 40px 50px;
-        background: #f4f7fb;
-        min-height: 100vh;
+        margin-left: 0;
+        padding: 100px 20px 90px;
     }
+
     .form-card {
-        background: #fff;
-        padding: 32px;
-        border-radius: 15px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        max-width: 100%;
+        padding: 25px;
     }
-    .form-label {
-        font-weight: 600;
-        color: #0b3551;
+}
+
+@media (max-width: 576px) {
+    h3.fw-bold {
+        font-size: 20px;
     }
-    .form-control, .form-select {
-        border-radius: 10px;
-        padding: 11px 14px;
-        border: 1px solid #cdd4da;
+
+    .form-card {
+        padding: 20px;
     }
+
     .btn-custom {
-        padding: 10px 24px;
-        border-radius: 10px;
-        font-weight: 600;
+        width: 100%;
     }
+
+    .d-flex.gap-2 {
+        flex-direction: column;
+    }
+}
 </style>
 
 <div class="main-content">
 
     <div class="form-card">
+
         <h3 class="fw-bold mb-4 text-primary">Edit Data Dosen</h3>
 
         <form action="proses_edit_dosen.php" method="POST">
@@ -51,13 +93,13 @@ if (isset($_GET['id'])) {
 
             <div class="mb-3">
                 <label class="form-label">Nama Lengkap</label>
-                <input type="text" name="nama" class="form-control" required 
+                <input type="text" name="nama" class="form-control" required
                        value="<?= $data['nama'] ?>">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" required 
+                <input type="text" name="username" class="form-control" required
                        value="<?= $data['username'] ?>">
             </div>
 
@@ -70,26 +112,31 @@ if (isset($_GET['id'])) {
             <div class="mb-3">
                 <label class="form-label">Password Baru</label>
                 <input type="text" name="password" class="form-control"
-                       value="<?= $data['password']?>">
+                       value="<?= $data['password'] ?>">
             </div>
 
             <div class="mb-4">
                 <label class="form-label">Role</label>
                 <select name="role" class="form-select">
-                    <option value="dosen" selected>Dosen</option>
+                    <option value="dosen" <?= ($data['role']=="dosen"?"selected":"") ?>>Dosen</option>
                     <option value="admin" <?= ($data['role']=="admin"?"selected":"") ?>>Admin</option>
                     <option value="mahasiswa" <?= ($data['role']=="mahasiswa"?"selected":"") ?>>Mahasiswa</option>
                 </select>
             </div>
 
             <div class="d-flex gap-2">
-                <a href="kelola_dosen.php" class="btn btn-secondary btn-custom">Kembali</a>
-                <button type="submit" class="btn btn-primary btn-custom">Simpan Perubahan</button>
+                <a href="kelola_dosen.php" class="btn btn-secondary btn-custom">
+                    Kembali
+                </a>
+                <button type="submit" class="btn btn-primary btn-custom">
+                    Simpan Perubahan
+                </button>
             </div>
 
         </form>
+
     </div>
 
 </div>
 
-<?php include "../template/footer.php"; ?>
+<?php include "../template_admin/footer.php"; ?>
