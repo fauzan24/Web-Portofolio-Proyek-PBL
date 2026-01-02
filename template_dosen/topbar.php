@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 include "../koneksi.php";
 
 if (!isset($_SESSION['id_user'])) {

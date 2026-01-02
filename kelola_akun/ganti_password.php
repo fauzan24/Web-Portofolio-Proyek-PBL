@@ -1,10 +1,6 @@
 <?php
 include "../koneksi.php";
-
-// Template
-include "../template/sidebar.php";
-include "../template/header.php";
-include "../template/topbar.php";
+session_start();
 
 $id_user = $_SESSION['id_user'];
 $query = mysqli_query($koneksi, "SELECT * FROM users WHERE id_user='$id_user'");
@@ -12,7 +8,6 @@ $user = mysqli_fetch_assoc($query);
 
 // Tentukan role
 $role = $user['role'];
-
 
 // ===============================
 // LOAD TEMPLATE SESUAI ROLE
@@ -33,7 +28,6 @@ if ($role == 'admin') {
     include "../template/topbar.php";
 }
 
-
 // ===============================
 // TOMBOL KEMBALI SESUAI ROLE
 // ===============================
@@ -44,7 +38,6 @@ if ($role == 'admin') {
 } else {
     $link_kembali = "../mahasiswa/dashboard_mahasiswa.php";
 }
-
 ?>
 
 <style>
@@ -81,77 +74,22 @@ if ($role == 'admin') {
     }
 
     /* ============================= */
-/*          RESPONSIVE          */
-/* ============================= */
+    /*          RESPONSIVE          */
+    /* ============================= */
 
-@media (max-width: 1200px) {
-    .content-wrapper {
-        margin-left: 230px;
-        padding: 110px 50px;
+    @media (max-width: 1200px) {
+        .content-wrapper {
+            margin-left: 230px;
+            padding: 110px 50px;
+        }
     }
 
-    .profile-card {
-        padding: 34px;
-        max-width: 600px;
+    @media (max-width: 992px) {
+        .content-wrapper {
+            margin-left: 0 !important;
+            padding: 100px 35px;
+        }
     }
-}
-
-@media (max-width: 992px) {
-    .content-wrapper {
-        margin-left: 0 !important; /* sidebar collapse ke mode mobile */
-        padding: 100px 35px;
-    }
-
-    .profile-card {
-        padding: 30px;
-        max-width: 100%;
-        border-radius: 16px;
-    }
-
-    .profile-title {
-        font-size: 20px;
-        text-align: center;
-    }
-
-    .d-flex.justify-content-between {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .btn-custom {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .content-wrapper {
-        padding: 90px 22px;
-    }
-
-    .profile-card {
-        padding: 26px;
-    }
-
-    .profile-input {
-        padding: 9px 12px;
-    }
-}
-
-@media (max-width: 576px) {
-    .content-wrapper {
-        padding: 80px 18px;
-    }
-
-    .profile-title {
-        font-size: 18px;
-    }
-
-    .profile-card {
-        padding: 22px;
-    }
-}
-
 </style>
 
 <div class="content-wrapper">
@@ -162,12 +100,13 @@ if ($role == 'admin') {
         <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-danger"><?= $_GET['error'] ?></div>
         <?php } ?>
+
         <?php if (isset($_GET['success'])) { ?>
             <div class="alert alert-success"><?= $_GET['success'] ?></div>
         <?php } ?>
 
         <form method="POST" action="proses_ganti_password.php">
-            
+
             <div class="mb-3">
                 <label class="profile-label">Password Lama</label>
                 <input type="password" name="password_lama" class="profile-input" required>
@@ -184,7 +123,7 @@ if ($role == 'admin') {
             </div>
 
             <div class="d-flex justify-content-between mt-3 gap-3">
-                <a href="../universal/profil.php?id_user=<?= $id_user ?>" class="btn btn-secondary btn-custom">Kembali</a>
+                <a href="<?= $link_kembali ?>" class="btn btn-secondary btn-custom">Kembali</a>
                 <button type="submit" class="btn btn-primary btn-custom">Simpan Password</button>
             </div>
 

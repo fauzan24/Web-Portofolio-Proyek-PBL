@@ -183,7 +183,25 @@ if ($role == 'admin') {
     <div class="profile-card">
 
         <div class="profile-header">
-            <img src="<?= $profil ?>" class="profile-db">
+            <?PHP // ===============================
+        // FOTO PROFIL UNIVERSAL
+        // ===============================
+        $foto_profil = '';
+
+        if ($role == 'mahasiswa') {
+            $foto_profil = $profil;
+        } elseif ($role == 'dosen') {
+            $foto_profil = $session_profil;
+        } else {
+            $foto_profil = "../assets/img/default-profile.png";
+        }
+
+        // fallback jika kosong
+        if (empty($foto_profil)) {
+            $foto_profil = "../assets/img/default-profile.png";
+        }
+ ?>
+            <img src="<?= $foto_profil ?>" class="profile-db">
             <div>
                 <h2 class="profile-title"><?= $dataUser['nama'] ?></h2>
                 <p class="text-secondary mb-0">@<?= $dataUser['username'] ?></p>

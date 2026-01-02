@@ -12,6 +12,11 @@ include "../template_admin/topbar.php";
     padding: 120px 40px 90px; /* aman header & footer */
     background: #f4f7fb;
     min-height: 100vh;
+
+    /* === TAMBAHAN UNTUK CENTER FORM === */
+    display: flex;
+    justify-content: center;   /* center horizontal */
+    align-items: flex-start;   /* tidak terlalu ke tengah layar */
 }
 
 /* ================= FORM CARD ================= */
@@ -21,6 +26,9 @@ include "../template_admin/topbar.php";
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     max-width: 760px;
+    width: 100%;
+
+    margin-top: 20px; /* jarak dari header */
 }
 
 /* ================= FORM ================= */
