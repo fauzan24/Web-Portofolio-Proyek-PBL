@@ -218,8 +218,8 @@ if ($role == 'admin') {
         </div>
 
         <div class="info-box">
-            <div class="info-label">Username</div>
-            <div class="info-value"><?= $dataUser['username'] ?></div>
+            <div class="info-label">Kata Pengguna</div>
+            <div class="info-value"><?= $dataUser['Kata Pengguna'] ?></div>
         </div>
 
         <div class="info-box">
@@ -234,7 +234,7 @@ if ($role == 'admin') {
                 Kembali
             </a>
             <a href="../kelola_akun/ganti_password.php" class="btn btn-primary btn-custom">
-                Ganti Password
+                Ganti Kandi
             </a>
         </div>
 

@@ -95,7 +95,7 @@ if ($role == 'admin') {
 <div class="content-wrapper">
     <div class="profile-card">
 
-        <h3 class="profile-title">Ganti Password</h3>
+        <h3 class="profile-title">Ganti Kata Sandi</h3>
 
         <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-danger"><?= $_GET['error'] ?></div>
@@ -108,23 +108,23 @@ if ($role == 'admin') {
         <form method="POST" action="proses_ganti_password.php">
 
             <div class="mb-3">
-                <label class="profile-label">Password Lama</label>
+                <label class="profile-label">Kata Sandi Lama</label>
                 <input type="password" name="password_lama" class="profile-input" required>
             </div>
 
             <div class="mb-3">
-                <label class="profile-label">Password Baru</label>
+                <label class="profile-label">Kata Sandi Baru</label>
                 <input type="password" name="password_baru" class="profile-input" required>
             </div>
 
             <div class="mb-3">
-                <label class="profile-label">Konfirmasi Password</label>
+                <label class="profile-label">Konfirmasi Kata Sandi</label>
                 <input type="password" name="password_konfirmasi" class="profile-input" required>
             </div>
 
             <div class="d-flex justify-content-between mt-3 gap-3">
                 <a href="<?= $link_kembali ?>" class="btn btn-secondary btn-custom">Kembali</a>
-                <button type="submit" class="btn btn-primary btn-custom">Simpan Password</button>
+                <button type="submit" class="btn btn-primary btn-custom">Simpan Kata Sandi</button>
             </div>
 
         </form>
