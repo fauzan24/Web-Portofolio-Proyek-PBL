@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 08, 2025 at 02:04 AM
+-- Generation Time: Jan 04, 2026 at 10:44 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -34,6 +34,13 @@ CREATE TABLE `komentar` (
   `id_user` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`id_komentar`, `komentar`, `id_projek`, `id_user`) VALUES
+(6, 'projek tersebut sudah sangat-sangat bagus sekali', 23, 25);
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +53,13 @@ CREATE TABLE `penilaian` (
   `id_user` int NOT NULL,
   `nilai` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `penilaian`
+--
+
+INSERT INTO `penilaian` (`id_penilaian`, `id_projek`, `id_user`, `nilai`) VALUES
+(6, 23, 25, 80);
 
 -- --------------------------------------------------------
 
@@ -75,8 +89,7 @@ CREATE TABLE `projek` (
 INSERT INTO `projek` (`id_projek`, `judul`, `semester`, `deskripsi`, `ketua`, `anggota`, `link_file`, `link_yt`, `foto`, `id_komentar`, `id_penilaian`, `id_user`) VALUES
 (15, 'web pengelolaan sp', 'ganjil', 'aaaaaaaaaaaaaaaaa', 'fraews', 'afung', 'https://github.com/fauzan24/Portolearn.git', 'https://github.com/fauzan24/Portolearn.git', 'logo kelompok.jpg', NULL, NULL, NULL),
 (16, 'web pengelolaan sp', 'ganjil', 'aaaaaaaaaaaaaaaaaaaaaa', 'muhammad adit', 'zaki simorangkir', 'https://github.com/fauzan24/Portolearn.git', 'https://github.com/fauzan24/Portolearn.git', 'logo.png', NULL, NULL, NULL),
-(18, 'jurnal', 'genap', 'portofolio ini merupakan yang digunakan untuk anu anu dan anu anu di anukan agar terjadi bagian anu anunya', 'muhammad adit', 'zaki simorangkir', 'https://github.com/fauzan24/Portolearn.git', 'https://github.com/fauzan24/Portolearn.git', 'Background Panitia .png', NULL, NULL, 4),
-(19, 'jurnal', 'ganjil', 'aaaaaaaaaaaaaaaaaaaaaa', 'muhammad adit', 'zaki simorangkir', 'https://github.com/fauzan24/Portolearn.git', 'https://github.com/fauzan24/Portolearn.git', 'Background Panitia .png', NULL, NULL, 12);
+(23, 'portofolio', 'ganjil', 'web portofolio proyek PBL ini berfungsi sebagai tempat untuk mahasiswa untuk menyimpan portofolio proyek PBL mereka', 'Fauzan Najib Ali', 'Ruben Andika Nababan, Luthfi Dwi Aprialdi', 'https://drive.google.com/drive/folders/1iXcLRpsMumRgAMbuBq77b0y1bFNe0-vQ?usp=drive_link', 'https://youtu.be/JYlkHRf5gW8?si=_HdRTRQB89hnn08z', 'Screenshot 2025-12-15 151046.png', NULL, NULL, 18);
 
 -- --------------------------------------------------------
 
@@ -100,16 +113,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `nama`, `username`, `password`, `nim`, `jurusan`, `profil`, `role`) VALUES
-(2, 'afung', '3312501078', '123', '3312501078', 'teknik elektro', '', 'dosen'),
-(4, 'kiki', '3312501076', '123', '3312501076', 'teknik mesin', '', 'mahasiswa'),
-(5, 'uki', '3312501089', '123', '3312501089', 'teknik mesin', '', 'mahasiswa'),
 (7, 'fauzan', 'admin', '123', '123', 'teknik elektro', '', 'admin'),
-(9, 'uki', '3312501010', '123', '3312501010', 'teknik informatika', '', 'mahasiswa'),
-(11, 'afung', 'ubuntuuu', '123', '3312501070', 'teknik elektro', '', 'dosen'),
-(12, 'koala', '3312501088', '123', '3312501088', 'manajemen bisnis', NULL, 'mahasiswa'),
-(13, 'didin', '3312501078', '123', '3312501099', 'manajemen bisnis', '', 'mahasiswa'),
-(14, 'uki', '33125033', '123', '33125033', 'manajemen bisnis', 'user.png', 'mahasiswa'),
-(15, 'ucok', '123456', '123', '123456', 'manajemen bisnis', '../gambar/user.png', 'mahasiswa');
+(11, 'Dwi Agung', 'Dwi', '123', '3312501063', 'teknik elektro', '', 'dosen'),
+(18, 'Fauzan Najib Ali', '3312501078', '123', '3312501078', 'teknik informatika', '../gambar/user.png', 'mahasiswa'),
+(19, 'Luthfi Dwi Aprialdi', '3312501077', '123', '3312501077', 'teknik mesin', '../gambar/user.png', 'mahasiswa'),
+(20, 'Ruben Andika Nababan', '3312501076', '123', '3312501076', 'teknik elektro', '../gambar/user.png', 'mahasiswa'),
+(23, 'arys', 'arys', '123', '331251055', 'teknik elektro', '../gambar/user.png', 'dosen'),
+(25, 'zaky', 'zaky', '123', '3310501056', 'teknik elektro', '../gambar/dosen.jpeg', 'dosen'),
+(26, 'Dimas Pratama', '3312501098', '123', '3312501098', 'manajemen bisnis', '../gambar/user.png', 'mahasiswa');
 
 --
 -- Indexes for dumped tables
@@ -144,8 +155,7 @@ ALTER TABLE `projek`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `nim` (`nim`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -155,25 +165,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id_komentar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_komentar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_penilaian` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `projek`
 --
 ALTER TABLE `projek`
-  MODIFY `id_projek` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_projek` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
