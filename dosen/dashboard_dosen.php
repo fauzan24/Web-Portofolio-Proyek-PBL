@@ -214,7 +214,7 @@ $jurusanData = mysqli_query($koneksi, "SELECT DISTINCT jurusan FROM users WHERE 
 
       <!-- Reset -->
       <div class="col-md-3 mb-3 d-flex align-items-end">
-        <a href="daftar_mahasiswa.php" class="btn btn-secondary w-100 reset-btn">Reset</a>
+        <a href="dashboard_dosen.php" class="btn btn-secondary w-100 reset-btn">Reset</a>
       </div>
 
     </div>
@@ -259,4 +259,4 @@ $jurusanData = mysqli_query($koneksi, "SELECT DISTINCT jurusan FROM users WHERE 
 
 </div>
 
-<?php include "../template/footer.php"; ?>
+<?php include "../template_dosen/footer.php"; ?>

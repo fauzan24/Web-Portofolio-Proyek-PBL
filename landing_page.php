@@ -5,9 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PortoLearn</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
   <style>
+    /* ===== FONT GLOBAL ===== */
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-weight: 600;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
     /* ===== Navbar ===== */
-    /* Navbar Sticky */
     .navbar {
       background-color: #0b3551;
       padding: 0.8rem 1rem;
@@ -23,9 +44,11 @@
       display: flex;
       align-items: center;
     }
+
     .hero h1 {
       font-weight: 700;
     }
+
     .hero img {
       max-width: 420px;
     }
@@ -34,6 +57,7 @@
     .about {
       padding: 60px 0;
     }
+
     .about .info-box {
       background: white;
       border-radius: 10px;
@@ -41,6 +65,7 @@
       padding: 20px;
       transition: 0.3s;
     }
+
     .about .info-box:hover {
       transform: scale(1.03);
     }
@@ -50,6 +75,7 @@
       background: #f8f9fa;
       padding: 60px 0;
     }
+
     .team img {
       width: 180px;
       height: 260px;
@@ -57,6 +83,7 @@
       border-radius: 8px;
       border: 3px solid #0b5ed7;
     }
+
     .team h5 {
       margin-top: 15px;
       font-weight: 600;
@@ -68,12 +95,79 @@
       text-align: center;
       padding: 15px 0;
     }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .hero {
+        text-align: center;
+      }
+
+      .hero img {
+        max-width: 320px;
+        margin-top: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        padding: 80px 0;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      .about .info-box {
+        margin-bottom: 20px;
+      }
+
+      .team img {
+        width: 150px;
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 1rem;
+      }
+
+      .hero h5 {
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero img {
+        max-width: 260px;
+      }
+
+      .about {
+        padding: 40px 0;
+      }
+
+      .team {
+        padding: 40px 0;
+      }
+
+      footer {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
+
 <body>
 
 <!-- ===== NAVBAR ===== -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #0b3551;">>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #0b3551;">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">
       <img src="asset/logo.png" width="30" class="me-2">
@@ -112,7 +206,10 @@
 <section id="tentang" class="about">
   <div class="container">
     <h3 class="fw-bold mb-4 text-center">Tentang</h3>
-    <p class="text-center mb-5">Platform PortoLearn dibuat sebagai sarana bagi mahasiswa Politeknik Negeri Batam untuk menampilkan hasil proyek dan meningkatkan personal branding melalui portofolio digital.</p>
+    <p class="text-center mb-5">
+      Platform PortoLearn dibuat sebagai sarana bagi mahasiswa Politeknik Negeri Batam
+      untuk menampilkan hasil proyek dan meningkatkan personal branding melalui portofolio digital.
+    </p>
 
     <div class="row justify-content-center text-center">
       <div class="col-md-3 mx-3 info-box">

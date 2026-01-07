@@ -23,10 +23,10 @@ if (isset($_GET['id'])) {
 /* ================= FORM CARD ================= */
 .form-card {
     background: #ffffff;
-    padding: 32px;
-    border-radius: 15px;
+    padding: 35px;
+    border-radius: 16px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    max-width: 760px;
+    width: 100%;
 }
 
 /* ================= FORM ================= */

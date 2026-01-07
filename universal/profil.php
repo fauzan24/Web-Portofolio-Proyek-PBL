@@ -242,4 +242,4 @@ if ($role == 'admin') {
 
 </div>
 
-<?php include "../template/footer.php"; ?>
+<?php include "../template_dosen/footer.php"; ?>

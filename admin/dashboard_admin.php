@@ -77,4 +77,4 @@
 
   </div>
 
-  <?php include "../template/footer.php"; ?>
+  <?php include "../template_admin/footer.php"; ?>

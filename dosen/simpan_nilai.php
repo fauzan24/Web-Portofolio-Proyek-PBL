@@ -4,7 +4,7 @@ include "../koneksi.php";
 $nilai = $_POST['nilai'];
 
 if ($nilai < 0 || $nilai > 100) {
-    echo "<script>alert('Nilai harus 0–100'); history.back();</script>";
+    echo "<script>alert('Nilai harus 0-100'); history.back();</script>";
     exit;
 }
 
