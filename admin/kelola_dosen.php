@@ -69,10 +69,10 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'dosen' ORD
           <tr class="text-center">
             <th>No</th>
             <th>Nama</th>
-            <th>Username</th>
+            <th>Nama Pengguna</th>
             <th>NIP</th>
-            <th>Password</th>
-            <th>Role</th>
+            <th>Kata Sandi</th>
+            <th>Peran</th>
             <th>Aksi</th>
           </tr>
         </thead>

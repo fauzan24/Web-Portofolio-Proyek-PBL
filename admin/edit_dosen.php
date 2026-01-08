@@ -98,7 +98,7 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Username</label>
+                <label class="form-label"></label>
                 <input type="text" name="username" class="form-control" required
                        value="<?= $data['username'] ?>">
             </div>
@@ -110,13 +110,13 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Password Baru</label>
+                <label class="form-label">Kata Sandi Baru</label>
                 <input type="text" name="password" class="form-control"
                        value="<?= $data['password'] ?>">
             </div>
 
             <div class="mb-4">
-                <label class="form-label">Role</label>
+                <label class="form-label">Peran</label>
                 <select name="role" class="form-select">
                     <option value="dosen" <?= ($data['role']=="dosen"?"selected":"") ?>>Dosen</option>
                     <option value="admin" <?= ($data['role']=="admin"?"selected":"") ?>>Admin</option>

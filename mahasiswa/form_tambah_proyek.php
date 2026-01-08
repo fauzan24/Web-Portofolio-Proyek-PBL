@@ -47,7 +47,7 @@ include "../template/topbar.php";
         </div>
 
         <div class="mb-3">
-          <label class="form-label fw-bold">Link File</label>
+          <label class="form-label fw-bold">Link Tautan</label>
           <input type="url" name="link_file" class="form-control" placeholder="Masukkan link file">
         </div>
 

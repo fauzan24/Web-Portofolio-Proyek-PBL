@@ -98,7 +98,7 @@ include "../template_admin/topbar.php";
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Username</label>
+                <label class="form-label">Nama Pengguna</label>
                 <input type="text" name="username" class="form-control" required
                        placeholder="Masukkan username login">
             </div>
@@ -110,7 +110,7 @@ include "../template_admin/topbar.php";
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Password</label>
+                <label class="form-label">Kata Sandi</label>
                 <input type="password" name="password" class="form-control" required
                        placeholder="Masukkan password">
             </div>

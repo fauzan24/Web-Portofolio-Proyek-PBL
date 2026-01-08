@@ -70,11 +70,11 @@ $result = mysqli_query($koneksi, "SELECT * FROM users WHERE `role` = 'mahasiswa'
           <tr class="text-center">
             <th>No</th>
             <th>Nama</th>
-            <th>Username</th>
+            <th>Nama Pengguna</th>
             <th>NIM</th>
             <th>Jurusan</th>
-            <th>Password</th>
-            <th>Role</th>
+            <th>Kata Sandi</th>
+            <th>Peran</th>
             <th>Aksi</th>
           </tr>
         </thead>

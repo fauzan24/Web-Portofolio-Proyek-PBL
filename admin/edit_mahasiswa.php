@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Username</label>
+                <label class="form-label">Nama Pengguna</label>
                 <input type="text" name="username" class="form-control" required
                        value="<?= $data['username'] ?>">
             </div>
@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="mb-4">
-                <label class="form-label">Role</label>
+                <label class="form-label">Peran</label>
                 <select name="role" class="form-select">
                     <option value="mahasiswa" <?= ($data['role']=='mahasiswa' ? 'selected' : '') ?>>Mahasiswa</option>
                     <option value="dosen" <?= ($data['role']=='dosen' ? 'selected' : '') ?>>Dosen</option>
